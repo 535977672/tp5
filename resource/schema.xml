@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE mycat:schema SYSTEM "schema.dtd">
+<mycat:schema xmlns:mycat="http://io.mycat/">
+
+<!--Mycat作为一个中间件，实现mysql协议，那么对前端应用连接来说就是一个数据库，也就有数据库的配置，mycat的数据库配置是在schema.xml中配置，配置好后映射到server.xml里面的用户就可以了。-->
+	<schema name="mycat" checkSQLschema="false" sqlMaxLimit="100">
+		<!-- auto sharding by id (long) -->
+		<!-- <table name="travelrecord" dataNode="dn1,dn2,dn3" rule="auto-sharding-long" /> -->
+
+		
+		<!--		（1）分片枚举：     　　 sharding-by-intfile
+
+		　　　　（2）主键范围约定：　   auto-sharding-long    此分片适用于，提前规划好分片字段某个范围属于哪个分片
+
+		　　　　（3）一致性hash：  　　sharding-by-murmur
+
+		　　　　（4）字符串hash解析：  sharding-by-stringhash
+
+		　　　　（5）按日期（天）分片：sharding-by-date
+
+		　　　　（6）按单月小时拆分：   sharding-by-hour
+
+		　　　　（7）自然月分片：         sharding-by-month
+
+		　　　　（8）取模：　　　　　　mod-long  此规则为对分片字段求摸运算
+
+		　　　　（9）取模范围约束：      sharding-by-pattern 此种规则是取模运算与范围约束的结合，主要为了后续数据迁移做准备，即可以自主决定取模后数据的节点分布
+		-->
+		<!-- 逻辑表配置  分库表 分片表  分库规则-->
+		<table name="mycat_label" primaryKey="id"  dataNode="dn1,dn2,dn3" rule="auto-sharding-long" />
+		
+		<!-- 全局表 -->
+		<table name="mycat_rank" primaryKey="rank_id"  type="global" dataNode="dn1,dn2,dn3" />
+		
+		<!-- global table is auto cloned to all defined data nodes ,so can join
+			with any table whose sharding node is in the same data node -->
+		<!-- <table name="company" primaryKey="ID" type="global" dataNode="dn1,dn2,dn3" /> -->
+		<!-- <table name="goods" primaryKey="ID" type="global" dataNode="dn1,dn2" /> -->
+		<!-- random sharding using mod sharind rule -->
+		<!-- <table name="hotnews" primaryKey="ID" autoIncrement="true" dataNode="dn1,dn2,dn3"
+			   rule="mod-long" />-->
+		<!-- <table name="dual" primaryKey="ID" dataNode="dnx,dnoracle2" type="global"
+			needAddLimit="false"/> <table name="worker" primaryKey="ID" dataNode="jdbc_dn1,jdbc_dn2,jdbc_dn3"
+			rule="mod-long" /> -->
+		<!-- <table name="employee" primaryKey="ID" dataNode="dn1,dn2"
+			   rule="sharding-by-intfile" />
+		<table name="customer" primaryKey="ID" dataNode="dn1,dn2"
+			   rule="sharding-by-intfile">
+			<childTable name="orders" primaryKey="ID" joinKey="customer_id"
+						parentKey="id">
+				<childTable name="order_items" joinKey="order_id"
+							parentKey="id" />
+			</childTable>
+			<childTable name="customer_addr" primaryKey="ID" joinKey="customer_id"
+						parentKey="id" />
+		</table>-->
+		<!-- <table name="oc_call" primaryKey="ID" dataNode="dn1$0-743" rule="latest-month-calldate"
+			/> -->
+	</schema>
+	<!-- <dataNode name="dn1$0-743" dataHost="localhost1" database="db$0-743"
+		/> -->
+	<!--配置分片（dataNode）-->
+	<dataNode name="dn1" dataHost="127.0.0.1" database="mycat_db1" />
+	<dataNode name="dn2" dataHost="127.0.0.1" database="mycat_db2" />
+	<dataNode name="dn3" dataHost="127.0.0.1" database="mycat_db3" />
+	<!--<dataNode name="dn4" dataHost="sequoiadb1" database="SAMPLE" />
+	 <dataNode name="jdbc_dn1" dataHost="jdbchost" database="db1" />
+	<dataNode	name="jdbc_dn2" dataHost="jdbchost" database="db2" />
+	<dataNode name="jdbc_dn3" 	dataHost="jdbchost" database="db3" /> -->
+	
+	<!--配置物理库分片映射（dataHost） writeType balance 等标签则是不同的策略，具体参考指南-->
+	<dataHost name="127.0.0.1" maxCon="1000" minCon="10" balance="0"
+			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
+		<!--heartbeat 标签代表Mycat需要对物理库心跳检测的语句，正常情况下生产案例可能配置主从，
+		或者多写 或者单库，无论哪种情况Mycat都需要维持到数据库的数据源连接，
+		因此需要定时检查后端连接可以性，心跳语句就是来作为心跳检测。-->
+		<heartbeat>select user()</heartbeat>
+		<!-- can have multi write hosts -->
+		<writeHost host="hostM1" url="127.0.0.1:3306" user="root"
+				   password="root">
+			<!-- can have multi read hosts writeHost、readHost代表该分片是否配置多写，主从，读写分离等高级特性-->
+			<!--writeHost 此标签代表 一个逻辑主机（dataHost）对应的后端的物理主机映射，
+			例如例子中写库hostM1 映射到127.0.0.1:3306。如果后端需要做读写分离或者多写 
+			或者主从则通过配置 多个writeHost 或者readHost即可。-->
+			<!-- <readHost host="hostS2" url="127.0.0.1:3306" user="root" password="root" />-->
+			<!-- <writeHost host="hostM1" url="192.168.0.2:3306" user="root" password="root" />-->
+		</writeHost>
+		
+		<!-- <writeHost host="hostM2" url="localhost:3316" user="root" password="123456"/> -->
+	</dataHost>
+	<!--
+		<dataHost name="sequoiadb1" maxCon="1000" minCon="1" balance="0" dbType="sequoiadb" dbDriver="jdbc">
+		<heartbeat> 		</heartbeat>
+		 <writeHost host="hostM1" url="sequoiadb://1426587161.dbaas.sequoialab.net:11920/SAMPLE" user="jifeng" 	password="jifeng"></writeHost>
+		 </dataHost>
+
+	  <dataHost name="oracle1" maxCon="1000" minCon="1" balance="0" writeType="0" 	dbType="oracle" dbDriver="jdbc"> <heartbeat>select 1 from dual</heartbeat>
+		<connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+		<writeHost host="hostM1" url="jdbc:oracle:thin:@127.0.0.1:1521:nange" user="base" 	password="123456" > </writeHost> </dataHost>
+
+		<dataHost name="jdbchost" maxCon="1000" 	minCon="1" balance="0" writeType="0" dbType="mongodb" dbDriver="jdbc">
+		<heartbeat>select 	user()</heartbeat>
+		<writeHost host="hostM" url="mongodb://192.168.0.99/test" user="admin" password="123456" ></writeHost> </dataHost>
+
+		<dataHost name="sparksql" maxCon="1000" minCon="1" balance="0" dbType="spark" dbDriver="jdbc">
+		<heartbeat> </heartbeat>
+		 <writeHost host="hostM1" url="jdbc:hive2://feng01:10000" user="jifeng" 	password="jifeng"></writeHost> </dataHost> -->
+
+	<!-- <dataHost name="jdbchost" maxCon="1000" minCon="10" balance="0" dbType="mysql"
+		dbDriver="jdbc"> <heartbeat>select user()</heartbeat> <writeHost host="hostM1"
+		url="jdbc:mysql://localhost:3306" user="root" password="123456"> </writeHost>
+		</dataHost> -->
+</mycat:schema>
