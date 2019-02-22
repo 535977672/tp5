@@ -1,0 +1,736 @@
+.main-box{
+    background: #f3f3f3;
+    padding: 30px 0;
+}
+.midle{
+    width: 1180px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+/*左侧菜单*/
+.leftMenu{
+    padding: 30px 0 0;
+    float: left;
+    border-right: 1px solid #efefef;
+}
+.menu_list {
+    width: 100%;
+}
+.menu_list ul li{
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+.menu_list ul li .fuMenu:before{
+    margin-right: 10px;
+    color: #aaa;
+    position: relative;
+    top:2px;
+}
+.menu_list ul li .fuMenu{
+    text-decoration: none;
+    color: #666;
+    font-size: 16px;
+    cursor: pointer;
+    height: 60px;
+    line-height: 60px;
+    text-align: left;
+    padding-left:30px;
+    width: 100%;
+    border-bottom: 1px solid #efefef;
+    float: left;
+}
+.menu_list ul li .fuMenu:hover{
+    color: #fff;
+    background: #55bb4e;
+}
+.menu_list ul li .fuMenu:hover:before{
+    color: #fff;
+}
+.menu_list ul li .xiala{
+    float: left;
+    margin-left: -50px;
+    margin-top: 25px;
+    color: #aaa;
+}
+.menu_list ul li .fuMenu:hover .xiala{
+    color: #fff;
+}
+.menu_list ul li .div1 {
+    width: 100%;
+    height: auto;
+    float: left;
+}
+.menu_list ul li .div1 .zcd{
+    display: block;
+    text-decoration: none;
+    color: #777;
+    font-size: 14px;
+    height: 60px;
+    background-color: #fff;
+    border-bottom: 1px solid #efefef;
+    cursor: pointer;
+    line-height: 60px;
+    text-align: left;
+    padding-left: 56px;
+    width: 100%;
+}
+.div1 {
+    height: 200px;
+    display: none;
+}
+.menu_list ul li .div1 .zcd:hover{
+    color: #FFF;
+    background-color:#55bb4e;
+}
+.removes{
+    color: #fff !important;
+    background: #55bb4e!important;
+}
+
+
+/*主页*/
+.right-cont{
+    padding:0 40px;
+    min-height: 650px;
+}
+.right-cont .home .home-info-wrapper{
+    border: solid 1px #efefef;
+    margin-top: 30px;
+    padding: 0;
+}
+.right-cont .home .home-info-wrapper .col-sm-6:first-child p{
+    border-right: 1px solid #efefef;
+}
+.right-cont .home .home-info-wrapper p{
+    text-align: center;
+    font-family: Arial;
+    line-height: 40px;
+}
+.right-cont .home .home-info-wrapper p:first-child{
+    font-size: 28px;
+    color:#55bb4e ;
+    margin-top: 30px;
+}
+.right-cont .home .home-info-wrapper p:last-child{
+    font-size: 16px;
+    color:#666;
+    margin-bottom: 30px;
+}
+.right-cont .home .home-btn-wrapper{
+    padding: 0;
+    padding-left: 30px;
+    margin-top: 30px;
+}
+.right-cont .home .home-btn-wrapper .home-btn{
+    font-size: 24px;
+    color: #fff;
+    text-align: center;
+    display: block;
+    background:#55bb4e ;
+    height: 140px;
+    line-height: 190px;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+}
+.right-cont .home .home-btn-wrapper .home-btn:before{
+    font-size: 50px;
+    position: absolute;
+    top:-40px;
+}
+.right-cont .home .home-btn-wrapper .home-btn:hover{
+    background: #5dc855;
+}
+.right-cont .home .home-btn-wrapper .home-btn ul{
+    top: 140px;
+    position: absolute;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    overflow: hidden;
+    border-radius: 6px;
+    z-index: 9;
+    background: #fff;
+}
+.right-cont .home .home-btn-wrapper .home-btn ul li a{
+    display: block;
+    line-height: 40px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #666;
+}
+.right-cont .home .home-btn-wrapper .home-btn ul li a:hover{
+    background: #e9ffe7;
+    color: #666;
+}
+.right-cont .home .carousel{
+    margin-top: 30px;
+    padding: 0;
+}
+.right-cont .home .announcement{
+    padding: 0;
+    margin-top: 30px;
+}
+.right-cont .home .announcement h1{
+    font-size: 16px;
+    border-left: 5px solid #55bb4e;
+    color: #333;
+    line-height: 18px;
+    padding-left: 10px;
+}
+.right-cont .home .announcement ul li a{
+    line-height: 49px;
+    border-bottom: 1px solid #eee;
+    display: block;
+    font-size: 14px;
+    text-decoration: none;
+    color: #666;
+    font-family: Arial;
+}
+.right-cont .home .announcement ul li a:hover{
+    color: #55bb4e;
+}
+.right-cont .home .announcement ul li a .spanOne{
+    padding-right: 10px;
+    border-right: 1px solid #ddd;
+    margin-right: 10px;
+    float: left;
+    line-height: 20px;
+    margin-top: 15px;
+}
+.right-cont .home .announcement ul li a .spanTwo{
+    float: left;
+    width: 650px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.right-cont .home .announcement ul li a .spanThree{
+    float: right;
+    font-size: 14px;
+    color: #bbb;
+}
+
+/*图文发布*/
+.picPublic h1{
+    line-height: 50px;
+    margin: 20px 0 30px;
+}
+.picPublic h1 span{
+    line-height: 20px;
+    font-size: 12px;
+    color: #999;
+}
+.choose-pro{
+    width: 190px;
+    border:1px solid #ccc;
+    color: #999;
+    cursor: pointer;
+    line-height: 34px;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+}
+.choose-pro:hover{
+    border:1px solid #55bb4e;
+    color: #55bb4e;
+}
+.choose-show{
+    background: #fff;
+    padding: 20px;
+}
+.choose-show .list-page{
+    padding: 0;
+}
+.choose-show .close-choose-show{
+    position: absolute;
+    top:20px;
+    right: 20px;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+}
+.choose-show h1{
+    line-height: 30px;
+    margin:0 0 20px;
+    text-align: center;
+}
+.choose-search-btn{
+    background-color: #eee!important;
+    border-radius: 4px!important;
+    border-top-left-radius: 0px!important;
+    border-bottom-left-radius: 0px!important;
+    cursor: pointer;
+}
+.choose-list-group{
+    max-height: 432px;
+    overflow: auto;
+}
+.choose-already{
+    padding: 20px 0;
+}
+.choose-list.card-list{
+    width: 140px;
+    height: 30px;
+    background: #eee;
+    border-radius: 4px;
+    padding: 5px 25px 10px 5px;
+    position: relative;
+    margin: 0px 10px 0 0;
+    display: inline-block;
+}
+.choose-list.card-list p{
+    font-size: 12px;
+    line-height: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 125px;
+}
+.close-card{
+    position: absolute;
+    right: 5px;
+    top:5px;
+    line-height: 20px;
+    color: #888;
+    cursor: pointer;
+}
+.choose-list a{
+    float: left;
+}
+.choose-list a:hover{
+    color:#55bb4e ;
+}
+.choose-list a img{
+    float: left;
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}
+.choose-list a p{
+    float: left;
+    font-size: 14px;
+    word-break:break-all;
+    max-width: 306px;
+    line-height: 25px;
+}
+.choose-add{
+    float: right;
+    height: 50px;
+    width: 50px;
+    background: #f1f1f1;
+    cursor: pointer;
+}
+.choose-add:hover{
+    background: #55bb4e ;
+}
+.choose-add:before{
+    color: #fff;
+    font-size: 16px;
+    margin-left: 17px;
+    line-height: 50px;
+}
+.choose-btn-box{
+    padding:10px 135px ;
+}
+.choose-buttom-btn{
+    float: left;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.choose-submit{
+    background: #55bb4e;
+    color: #fff;
+    margin-right:28px;
+}
+.choose-cancel{
+    border: 1px #aaa solid;
+    color: #999;
+}
+.choose-cancel:hover{
+    border: 1px #55bb4e solid;
+    color: #55bb4e;
+}
+.img-box .up-p{
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #555;
+}
+.img-section{
+    padding: 18px;
+    border:1px solid #ccc;
+    border-radius: 4px;
+}
+.z_photo .z_file{
+    position: relative;
+}
+.z_file  .file{
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+}
+.z_photo .up-section{
+    position: relative;
+    margin-right: 20px;
+}
+.up-section .close-upimg{
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    display: none;
+    z-index: 10;
+}
+.up-section .up-span{
+    display: block;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+    background: rgba(0,0,0,.5);
+}
+.up-section:hover{
+    border: 1px solid #f15134;
+}
+.up-section:hover .close-upimg{
+    display: block;
+}
+.up-section:hover .up-span{
+    visibility: visible;
+}
+.z_photo .up-img{
+    display: block;
+    width: 100%;
+    margin-top: 37px;
+}
+.loading{
+    border: 1px solid #D1D1D1;
+    background:url(/static/image/loading.gif) no-repeat center;
+}
+.up-opcity{
+    opacity: 0;
+}
+.img-name-p{
+    display: none;
+}
+.upimg-div .up-section {
+    width: 190px;
+    height: 180px;
+}
+.img-box .upimg-div .z_file {
+    width: 190px;
+    height: 180px;
+}
+.z_file .add-img {
+    display: block;
+    width: 190px;
+    height: 180px;
+    border: 1px dashed #ddd;
+}
+.mask{
+    z-index: 1000;
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.4);
+}
+.mask .mask-content{
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -80px;
+    background: white;
+    height: 160px;
+    text-align: center;
+}
+.mask .mask-content .del-p{
+    color: #555;
+    height: 94px;
+    line-height: 94px;
+    font-size: 18px;
+    border-bottom: 1px solid #D1D1D1;
+}
+.mask-content .check-p{
+    height: 66px;
+    line-height: 66px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+}
+.mask-content .check-p span{
+    width: 49%;
+    display:inline-block;
+    text-align: center;
+    color:#d4361d ;
+    font-size: 18px;
+}
+.check-p .del-com{
+    border-right: 1px solid #D1D1D1;
+}
+.form-btn .btn-public[type="button"]{
+    font-size: 14px;
+    color: #666;
+    width: 150px;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    line-height: 40px;
+    margin-right: 20px;
+}
+.form-btn .btn-public[type="button"]:hover{
+    color: #55bb4e;
+    border-color: #55bb4e;
+}
+.form-btn .public-btn[type="button"]{
+    background: #55bb4e;
+    color: #fff;
+}
+.form-btn .public-btn[type="button"]:hover{
+    background: #5dc855;
+    color: #fff;
+    border-color: #d9d9d9;
+}
+.form-btn .cancel-btn[type="button"]{
+    margin-right: 0;
+}
+
+
+/*视频发布*/
+#videoInput{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+.upDic{
+    font-size: 12px;
+    color: #bbb;
+    line-height: 30px;
+}
+
+/*资讯管理*/
+.info_state{
+    border-bottom: 1px solid #efefef;
+}
+.info_state li{
+    width: 85px;
+    line-height: 40px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    cursor: pointer;
+    position: relative;
+    margin-right: 10px;
+}
+.info_state li:after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background: #55bb4e;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transition: all .5s;
+}
+.info_state li:hover:after{
+    left: 0%;
+    width: 100%;
+}
+.info_state li.active{
+    color: #55bb4e;
+    border-bottom: 2px solid #55bb4e;
+}
+.info-list-box {
+    padding: 30px 0;
+    border-bottom: 1px solid #efefef;
+}
+.info-list-box .info-title a{
+    font-size: 16px;
+    color: #666;
+}
+.info-list-box .info-label{
+    margin: 8px 0 26px 0;
+}
+.info-list-box .info-label li{
+    padding-right: 10px;
+    border-right: 1px solid #999;
+    margin-right: 10px;
+    font-size: 14px;
+    color: #999;
+}
+.info-list-box .info-list-left .info-mana-btn{
+    margin-right: 20px;
+    padding: 10px 25px;
+    color: #999;
+}
+
+.info-list-box .info-list-left .info-mana-btn:before{
+    margin-right: 8px;
+    font-size: 12px;
+}
+.info-list-box .info-list-left .info-mana-btn:hover{
+    color: #55bb4e;
+    background: #fff;
+    border-color: #55bb4e;
+}
+.info-list-box .info-list-left .info-mana-btn:focus{
+    background: #fff;
+    outline: none;
+}
+.info-list-box .info-list-left{
+    float: left;
+}
+.info-list-box .info-list-right{
+    float: right;
+    width: 190px;
+    height: 107px;
+    overflow: hidden;
+    background: #000;
+    border-radius: 6px;
+}
+.info-list-box .info-list-right img{
+    display: block;
+    width: 190px;
+    height: 107px;
+}
+/*评论管理*/
+.info-list-box h2{
+    font-size: 16px;
+    margin: 0 0 20px;
+}
+.info-list-box .comment-list{
+    margin: 3px 0 0;
+    background: #f5f5f5;
+    padding:20px 15px;
+    border-radius: 6px;
+}
+.user-photo{
+}
+.user-photo img{
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    background: #000;
+    display: block;
+}
+.comment-cont{
+    padding: 0 0 15px 0;
+    border-bottom: #ddd solid 1px;
+    margin-bottom: 15px;
+}
+.comment-cont p{
+    font-size: 14px;
+    color: #666;
+    max-width: 100%;
+    word-break: break-all;
+    line-height: 22px;
+    margin-bottom: 4px;
+}
+.comment-cont p span{
+    color: #55bb4e;
+}
+.comment-cont .comment-time{
+    float: left;
+    font-size: 12px;
+    color: #999;
+}
+.comment-cont:hover .reply-comment{
+    display: block;
+}
+.comment-cont .reply-comment{
+    float: right;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    display: none;
+}
+.more-reply-btn{
+    background: none;
+    border: none;
+    padding: 0;
+    color: #666;
+}
+.more-comment-btn{
+    background: none;
+    border: none;
+    padding: 0;
+    color: #55bb4e;
+    line-height: 50px;
+}
+.comment-cont .reply-comment:hover{
+    color: #55bb4e;
+}
+.comment-cont .reply-more{
+    display: none;
+}
+.comment-cont .reply-text{
+    margin-top: 50px;
+}
+.comment-cont .reply-btn{
+    float: right;
+    margin-top: 10px;
+    background: #55bb4e;
+    color: #fff;
+    font-weight: normal;
+    text-shadow: none;
+    border: none;
+}
+.comment-cont .reply-btn:focus{
+    outline: none;
+    border: none;
+}
+
+/*账户信息*/
+.user-account-list{
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 30px;
+    font-family: "Monospaced Number","Chinese Quote",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.user-account-list .info-name{
+    text-align: right;
+    line-height: 26px;
+    color: #888;
+    font-size: 14px;
+}
+.user-account-list .info-name:before{
+    content: "";
+}
+.user-account-list .head-photo{
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.user-account-list .account-info{
+    line-height: 26px;
+    font-weight: normal!important;
+}
+.user-account-list .operator-photo{
+    height: 80px;
+}
