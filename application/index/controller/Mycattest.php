@@ -95,7 +95,7 @@ class mycattest extends Controller
 //        $stmt = $conn->prepare("select * from mycat_label where id = :id");
 //        $stmt->execute(array('id' => 7));
 //        $re = $stmt->fetchAll(PDO::FETCH_ASSOC);//返回一个索引为结果集列名的数组
-//        var_dump($re);
+//        var_dump($re); 
         
         
 //        $conn = new PDO("mysql:host=127.0.0.1:8066;dbname=mycat", 'root', 'root',array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));       
