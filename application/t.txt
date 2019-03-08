@@ -1,7 +1,7 @@
-<?php
+﻿<?php
 
-/** tt
- * Created by Netbeans.tt
+/**
+ * Created by Netbeans.
  * User: mf
  * Date: 2019-3-7
  * Time: 16:47:45
