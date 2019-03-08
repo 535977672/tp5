@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Resque' => array($vendorDir . '/chrisboulton/php-resque/lib'),
+    'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
     'OAuth2' => array($vendorDir . '/bshaffer/oauth2-server-php/src'),
     'Neutron' => array($vendorDir . '/neutron/temporary-filesystem/src'),
     'FFMpeg' => array($vendorDir . '/php-ffmpeg/php-ffmpeg/src'),
