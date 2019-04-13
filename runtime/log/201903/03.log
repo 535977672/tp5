@@ -393,3 +393,555 @@
 )
 [ info ] [ DB ] INIT mysql
 [ error ] [10501]SQLSTATE[HY000]: General error: 1220 Unknown pstmtId when executing.[E:\php\tp5\thinkphp\library\think\db\Connection.php:687]
+---------------------------------------------------------------
+[ 2019-03-03T23:01:38+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/index
+[运行时间：0.380022s] [吞吐率：2.63req/s] [内存消耗：2,480.38kb] [文件加载：91]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; monitor_count=18; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551624524',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ error ] [10501]SQLSTATE[HY000]: General error: 1220 Unknown pstmtId when executing.[E:\php\tp5\thinkphp\library\think\db\Connection.php:687]
+---------------------------------------------------------------
+[ 2019-03-03T23:01:44+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/index1
+[运行时间：0.184010s] [吞吐率：5.43req/s] [内存消耗：1,707.80kb] [文件加载：84]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; monitor_count=19; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551625299',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:02:04+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/index1
+[运行时间：0.300017s] [吞吐率：3.33req/s] [内存消耗：1,724.86kb] [文件加载：85]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; monitor_count=20; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551625306',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [1]Class 'app\index\controller\PDO' not found[E:\php\tp5\application\index\controller\Ct.php:178]
+---------------------------------------------------------------
+[ 2019-03-03T23:02:49+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/index1
+[运行时间：4.910280s] [吞吐率：0.20req/s] [内存消耗：1,655.29kb] [文件加载：80]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; monitor_count=21; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551625325',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:06:58+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/truncate
+[运行时间：2.620150s] [吞吐率：0.38req/s] [内存消耗：2,410.95kb] [文件加载：85]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551625325; monitor_count=22',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-03-03T23:08:22+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/index1
+[运行时间：4.467893s] [吞吐率：0.22req/s] [内存消耗：2,914.21kb] [文件加载：91]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551625325; monitor_count=23',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ error ] [10501]SQLSTATE[HY000]: General error: 1220 Unknown pstmtId when executing.[E:\php\tp5\thinkphp\library\think\db\Connection.php:764]
+---------------------------------------------------------------
+[ 2019-03-03T23:08:52+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/count
+[运行时间：1.834045s] [吞吐率：0.55req/s] [内存消耗：2,416.05kb] [文件加载：85]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; monitor_count=24; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551625704',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-03-03T23:16:49+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/truncate
+[运行时间：0.996815s] [吞吐率：1.00req/s] [内存消耗：2,411.27kb] [文件加载：85]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551625704; monitor_count=25',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-03-03T23:16:51+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/truncate
+[运行时间：0.692621s] [吞吐率：1.44req/s] [内存消耗：2,411.42kb] [文件加载：85]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551625704; monitor_count=26',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-03-03T23:16:57+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/index1
+[运行时间：2.179439s] [吞吐率：0.46req/s] [内存消耗：2,914.93kb] [文件加载：91]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551625704; monitor_count=27',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ error ] [10501]SQLSTATE[HY000]: General error: 1220 Unknown pstmtId when executing.[E:\php\tp5\thinkphp\library\think\db\Connection.php:764]
+---------------------------------------------------------------
+[ 2019-03-03T23:17:14+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/count
+[运行时间：0.337205s] [吞吐率：2.97req/s] [内存消耗：2,416.42kb] [文件加载：85]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; monitor_count=28; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626219',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-03-03T23:17:17+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/count
+[运行时间：0.347808s] [吞吐率：2.88req/s] [内存消耗：2,416.63kb] [文件加载：85]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626219; monitor_count=29',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-03-03T23:25:19+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/wq
+[运行时间：0.261606s] [吞吐率：3.82req/s] [内存消耗：1,720.15kb] [文件加载：85]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626219; monitor_count=30',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [2]implode(): Invalid arguments passed[E:\php\tp5\application\index\controller\Ct.php:284]
+---------------------------------------------------------------
+[ 2019-03-03T23:26:16+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/wq
+[运行时间：0.225008s] [吞吐率：4.44req/s] [内存消耗：1,657.87kb] [文件加载：80]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; monitor_count=31; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626722',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:26:47+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/wq
+[运行时间：0.199408s] [吞吐率：5.01req/s] [内存消耗：1,657.87kb] [文件加载：80]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626722; monitor_count=32',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:27:26+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/wq
+[运行时间：0.224802s] [吞吐率：4.45req/s] [内存消耗：1,658.04kb] [文件加载：80]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626722; monitor_count=33',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:27:29+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/wq
+[运行时间：0.200201s] [吞吐率：4.99req/s] [内存消耗：1,658.04kb] [文件加载：80]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626722; monitor_count=34',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:27:30+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/wq
+[运行时间：0.113201s] [吞吐率：8.83req/s] [内存消耗：1,658.04kb] [文件加载：80]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626722; monitor_count=35',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:27:31+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/wq
+[运行时间：0.152400s] [吞吐率：6.56req/s] [内存消耗：1,658.04kb] [文件加载：80]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626722; monitor_count=36',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:27:33+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/wq
+[运行时间：0.114201s] [吞吐率：8.76req/s] [内存消耗：1,658.04kb] [文件加载：80]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626722; monitor_count=37',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:27:40+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/wq
+[运行时间：0.184002s] [吞吐率：5.43req/s] [内存消耗：1,658.04kb] [文件加载：80]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626722; monitor_count=38',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:27:41+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/wq
+[运行时间：0.148401s] [吞吐率：6.74req/s] [内存消耗：1,658.04kb] [文件加载：80]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626722; monitor_count=39',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:32:05+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/wq
+[运行时间：0.242807s] [吞吐率：4.12req/s] [内存消耗：1,658.11kb] [文件加载：80]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626722; monitor_count=40',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:41:55+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/wq
+[运行时间：0.352403s] [吞吐率：2.84req/s] [内存消耗：1,657.80kb] [文件加载：80]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551626722; monitor_count=41',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:42:09+08:00 ] 127.0.0.1 GET www.tp.com/phpMyAdmin/
+[运行时间：0.225004s] [吞吐率：4.44req/s] [内存消耗：1,292.52kb] [文件加载：71]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+---------------------------------------------------------------
+[ 2019-03-03T23:42:18+08:00 ] 127.0.0.1 GET www.tp.com/phpMyAdmin
+[运行时间：0.200606s] [吞吐率：4.98req/s] [内存消耗：1,292.52kb] [文件加载：71]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+---------------------------------------------------------------
+[ 2019-03-03T23:43:41+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/truncate
+[运行时间：1.884043s] [吞吐率：0.53req/s] [内存消耗：2,411.84kb] [文件加载：85]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; monitor_count=43; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551627739',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2019-03-03T23:43:50+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/index1
+[运行时间：2.478068s] [吞吐率：0.40req/s] [内存消耗：2,915.00kb] [文件加载：91]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551627739; monitor_count=44',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ error ] [10501]SQLSTATE[HY000]: General error: 1220 Unknown pstmtId when executing.[E:\php\tp5\thinkphp\library\think\db\Connection.php:764]
+---------------------------------------------------------------
+[ 2019-03-03T23:47:21+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/wq
+[运行时间：0.271209s] [吞吐率：3.69req/s] [内存消耗：1,657.52kb] [文件加载：80]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; monitor_count=45; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551627831',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-03-03T23:48:35+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/index1
+[运行时间：2.444437s] [吞吐率：0.41req/s] [内存消耗：2,915.02kb] [文件加载：91]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1551627831; monitor_count=46',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ error ] [10501]SQLSTATE[HY000]: General error: 1220 Unknown pstmtId when executing.[E:\php\tp5\thinkphp\library\think\db\Connection.php:764]
