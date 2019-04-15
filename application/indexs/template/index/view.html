@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>index index</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>view</div>
+        <div>系统变量输出:{/$Think.get.name|default="default"/}</div>
+        <div>常量输出:{/$Think.const.APP_PATH/}</div>
+        <div>配置输出:{/$Think.config.template.type/}</div>
+        <div>请求参数:{/$Request.get.name/}</div>
+        <div>函数md5|substr:{/$name|md5|substr=0,10|default="default"/}</div>
+        <div>函数md5|substr:{/:substr(md5($name), 0, 10)/}</div>
+        <div>变量:{/$name/}</div>
+        <div>数组:{/$list[0]['name']/}</div>
+        <div>数组:{/$list.1.name/}</div>
+        
+        <div>VOLIST标签:</div>
+        <div>
+            {/volist name="list" id="d" key="k"/}
+            {/$k/} | {/$d.name/} | {/$d.code/}  <br/>
+            {//volist/}
+        </div>
+        <div>
+            {/volist name="list" id="d" /}
+            {/$key/} | {/$d.name/} | {/$d.code/}  <br/>
+            {//volist/}
+        </div>
+        <div>FOREACH标签:</div>
+        <div>
+            {/foreach $list as $k => $d/}
+            {/$k/} | {/$d.name/} | {/$d.code/}  <br/>
+            {//foreach/}
+        </div>
+        <div>比较标签标签: eq neq lt gt ...</div>
+        <div>
+            {/foreach $list as $k => $d/}
+            {/eq name='d.code' value='2'/}code={/$d.code/}{//eq/}
+            {//foreach/}
+        </div>
+        <div>条件标签: switch if in notin between  nobetween range(in notin between  nobetween) present(判断某个变量是否已经定义) notpresent empty notempty defined  notdefined </div>
+        <div>
+            {/foreach $list as $k => $d/}
+            {/if $d.code neq 2/}code={/$d.code/}{/elseif $d.code eq 2/}code={/$d.code/}{//if/}
+            {//foreach/}
+        </div>
+        <div>php标签: {php}</div>
+        <div>
+            {/php/}echo "php标签";{//php/}
+        </div>
+        <div>定义标签:  assign define</div>
+        <div>
+            {/assign name="t" value="34"/}
+            {/$t/}
+            {/define name="TE" value="343"/}
+            {/$Think.const.TE/}
+        </div>
+    </body>
+</html>

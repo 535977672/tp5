@@ -2,59 +2,47 @@
 namespace UsingRefs;
 
 /**
- * @OA\PathItem(
+ * @SWG\Path(
  *   path="/products/{product_id}",
- *   @OA\Parameter(ref="#/components/parameters/product_id_in_path_required")
+ *   @SWG\Parameter(ref="#/parameters/product_id_in_path_required")
  * )
  */
 
-class ProductController
-{
+class ProductController {
 
     /**
-     * @OA\Get(
+     * @SWG\Get(
      *   tags={"Products"},
      *   path="/products/{product_id}",
-     *   @OA\Response(
-     *       response="default",
-     *       description="successful operation",
-     *       @OA\JsonContent(ref="#/components/responses/product")
-     *   )
+     *   @SWG\Response(response="default", ref="#/responses/product")
      * )
      */
-    public function getProduct($id)
-    {
+    public function getProduct($id) {
+
     }
 
     /**
-     * @OA\Patch(
+     * @SWG\Patch(
      *   tags={"Products"},
      *   path="/products/{product_id}",
-     *   @OA\Parameter(ref="#/components/requestBodies/product_in_body"),
-     *   @OA\Response(
-     *       response="default",
-     *       description="successful operation",
-     *       @OA\JsonContent(ref="#/components/responses/product")
-     *   )
+     *   @SWG\Parameter(ref="#/parameters/product_in_body"),
+     *   @SWG\Response(response="default", ref="#/responses/product")
      * )
      */
-    public function updateProduct($id)
-    {
+    public function updateProduct($id) {
+
     }
 
     /**
-     * @OA\Post(
+     * @SWG\Post(
      *   tags={"Products"},
      *   path="/products",
-     *   @OA\Parameter(ref="#/components/requestBodies/product_in_body"),
-     *   @OA\Response(
-     *       response="default",
-     *       description="successful operation",
-     *       @OA\JsonContent(ref="#/components/responses/product")
-     *   )
+     *   @SWG\Parameter(ref="#/parameters/product_in_body"),
+     *   @SWG\Response(response="default", ref="#/responses/product")
      * )
      */
-    public function addProduct($id)
-    {
+    public function addProduct($id) {
+
     }
+
 }

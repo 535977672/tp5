@@ -1,13 +1,13 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @license Apache 2.0
  */
 
-namespace OpenApi\Processors;
+namespace Swagger\Processors;
 
-use OpenApi\Analysis;
-use OpenApi\Annotations\Operation;
+use Swagger\Analysis;
+use Swagger\Annotations\Operation;
 
 /**
  * Use the operation context to extract useful information and inject that into the annotation.
@@ -16,13 +16,14 @@ class AugmentOperations
 {
     public function __invoke(Analysis $analysis)
     {
-        $allOperations = $analysis->getAnnotationsOfType(Operation::class);
+        $allOperations = $analysis->getAnnotationsOfType('\Swagger\Annotations\Operation');
 
+        /** @var Operation $operation */
         foreach ($allOperations as $operation) {
-            if ($operation->summary === UNDEFINED) {
+            if (null === $operation->summary) {
                 $operation->summary = $operation->_context->phpdocSummary();
             }
-            if ($operation->description === UNDEFINED) {
+            if (null === $operation->description) {
                 $operation->description = $operation->_context->phpdocDescription();
             }
         }

@@ -11,75 +11,77 @@
 
    /**
     *
-    *	@OA\Put(
+    *	@SWG\Put(
     * 		path="/users/{id}",
     * 		tags={"users"},
     * 		operationId="updateUser",
     * 		summary="Update user entry",
-    * 		@OA\Parameter(
+    * 		@SWG\Parameter(
     * 			name="id",
     * 			in="path",
     * 			required=true,
+    * 			type="string",
     * 			description="UUID",
     * 		),
-    * 		@OA\Parameter(
+    * 		@SWG\Parameter(
     * 			name="user",
-    * 			in="cookie",
+    * 			in="body",
     * 			required=true,
-    * 			@OA\Schema(ref="#/components/schemas/User"),
+    * 			@SWG\Schema(ref="#/definitions/User"),
     *		),
-    * 		@OA\Response(
+    * 		@SWG\Response(
     * 			response=200,
     * 			description="success",
     * 		),
-    * 		@OA\Response(
+    * 		@SWG\Response(
     * 			response="default",
     * 			description="error",
-    * 			@OA\Schema(ref="#/components/schemas/Error"),
+    * 			@SWG\Schema(ref="#/definitions/Error"),
     * 		),
     * 	)
-    * @OA\Options(
+    * @SWG\Options(
     * path="/users/{id}",
-    * @OA\Response(response=200,description="Some CORS stuff")
+    * @SWG\Response(response=200,description="Some CORS stuff")
     * )
     */
    Route::put('/users/{user_id}', 'UserController@update');
 
-    /**
-     *
-     * 	@OA\Delete(
-     * 		path="/users/{id}",
-     * 		tags={"users"},
-     * 		operationId="deleteUser",
-     * 		summary="Remove user entry",
-     * 		@OA\Parameter(
-     * 			name="id",
-     * 			in="path",
-     * 			required=true,
-     * 			description="UUID",
-     * 		),
-     * 		@OA\Response(
-     * 			response=200,
-     * 			description="success",
-     * 		),
-     * 		@OA\Response(
-     * 			response="default",
-     * 			description="error",
-     * 			@OA\Schema(ref="#/components/schemas/Error"),
-     * 		),
-     * 	)
-     *
-     */
-    Route::delete('/users/{user_id}', 'UserController@destroy');
+	/**
+	 *
+	 * 	@SWG\Delete(
+	 * 		path="/users/{id}",
+	 * 		tags={"users"},
+	 * 		operationId="deleteUser",
+	 * 		summary="Remove user entry",
+	 * 		@SWG\Parameter(
+	 * 			name="id",
+	 * 			in="path",
+	 * 			required=true,
+	 * 			type="string",
+	 * 			description="UUID",
+	 * 		),
+	 * 		@SWG\Response(
+	 * 			response=200,
+	 * 			description="success",
+	 * 		),
+	 * 		@SWG\Response(
+	 * 			response="default",
+	 * 			description="error",
+	 * 			@SWG\Schema(ref="#/definitions/Error"),
+	 * 		),
+	 * 	)
+	 *
+	 */
+	Route::delete('/users/{user_id}', 'UserController@destroy');
 
       /**
-      *@OA\Head(path="/users/{id}",@OA\Response(response=200,description="Only checking if it exists"))
+      *@SWG\Head(path="/users/{id}",@SWG\Response(response=200,description="Only checking if it exists"))
       */
      Route::get('/users/{user_id}', 'UserController@show');
 
 /**
- * @OA\Schema(schema="Error")
- * @OA\Schema(schema="User")
+ * @SWG\Definition(definition="Error")
+ * @SWG\Definition(definition="User")
  */
 //
 // @codingStandardsIgnoreEnd

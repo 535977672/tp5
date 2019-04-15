@@ -1,13 +1,13 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @license Apache 2.0
  */
 
-namespace OpenApi;
+namespace Swagger;
 
 /**
- * OpenApi\StaticAnalyser extracts swagger-php annotations from php code using static analysis.
+ * Swagger\StaticAnalyser extracts swagger-php annotations from php code using static analysis.
  */
 class StaticAnalyser
 {
@@ -25,14 +25,13 @@ class StaticAnalyser
      * Extract and process all doc-comments from a file.
      *
      * @param string $filename Path to a php file.
-     *
      * @return Analysis
      */
     public function fromFile($filename)
     {
         if (function_exists('opcache_get_status') && function_exists('opcache_get_configuration')) {
-            if (empty($GLOBALS['openapi_opcache_warning'])) {
-                $GLOBALS['openapi_opcache_warning'] = true;
+            if (empty($GLOBALS['swagger_opcache_warning'])) {
+                $GLOBALS['swagger_opcache_warning'] = true;
                 $status = opcache_get_status();
                 $config = opcache_get_configuration();
                 if ($status['opcache_enabled'] && $config['directives']['opcache.save_comments'] == false) {
@@ -41,31 +40,27 @@ class StaticAnalyser
             }
         }
         $tokens = token_get_all(file_get_contents($filename));
-
         return $this->fromTokens($tokens, new Context(['filename' => $filename]));
     }
 
     /**
      * Extract and process all doc-comments from the contents.
      *
-     * @param string  $code    PHP code. (including <?php tags)
+     * @param string $code PHP code. (including <?php tags)
      * @param Context $context The original location of the contents.
-     *
      * @return Analysis
      */
     public function fromCode($code, $context)
     {
         $tokens = token_get_all($code);
-
         return $this->fromTokens($tokens, $context);
     }
 
     /**
      * Shared implementation for parseFile() & parseContents().
      *
-     * @param array   $tokens       The result of a token_get_all()
+     * @param array $tokens The result of a token_get_all()
      * @param Context $parseContext
-     *
      * @return Analysis
      */
     protected function fromTokens($tokens, $parseContext)
@@ -74,15 +69,14 @@ class StaticAnalyser
         $analysis = new Analysis();
         reset($tokens);
         $token = '';
-        $imports = Analyser::$defaultImports; // Use @OA\* for swagger-php annotations (unless overwritten by a use statement)
+        $imports = Analyser::$defaultImports; // Use @SWG\* for swagger annotations (unless overwritten by a use statement)
 
         $parseContext->uses = [];
-        $schemaContext = $parseContext; // Use the parseContext until a definitionContext  (class or trait) is created.
+        $definitionContext = $parseContext; // Use the parseContext until a definitionContext  (class or trait) is created.
         $classDefinition = false;
-        $traitDefinition = false;
         $comment = false;
         $line = 0;
-        $lineOffset = $parseContext->line ?: 0;
+        $lineOffset = $parseContext->line ? : 0;
         while ($token !== false) {
             $previousToken = $token;
             $token = $this->nextToken($tokens, $parseContext);
@@ -91,7 +85,7 @@ class StaticAnalyser
             }
             if ($token[0] === T_DOC_COMMENT) {
                 if ($comment) { // 2 Doc-comments in succession?
-                    $this->analyseComment($analysis, $analyser, $comment, new Context(['line' => $line], $schemaContext));
+                    $this->analyseComment($analysis, $analyser, $comment, new Context(['line' => $line], $definitionContext));
                 }
                 $comment = $token[1];
                 $line = $token[2] + $lineOffset;
@@ -112,26 +106,26 @@ class StaticAnalyser
                     continue;
                 }
 
-                $schemaContext = new Context(['class' => $token[1], 'line' => $token[2]], $parseContext);
+                $definitionContext = new Context(['class' => $token[1], 'line' => $token[2]], $parseContext);
                 if ($classDefinition) {
                     $analysis->addClassDefinition($classDefinition);
                 }
                 $classDefinition = [
-                    'class'      => $token[1],
-                    'extends'    => null,
+                    'class' => $token[1],
+                    'extends' => null,
                     'properties' => [],
-                    'methods'    => [],
-                    'context'    => $schemaContext,
+                    'methods' => [],
+                    'context' => $definitionContext
                 ];
-                // @todo detect end-of-class and reset $schemaContext
+                // @todo detect end-of-class and reset $definitionContext
                 $token = $this->nextToken($tokens, $parseContext);
                 if ($token[0] === T_EXTENDS) {
-                    $schemaContext->extends = $this->parseNamespace($tokens, $token, $parseContext);
-                    $classDefinition['extends'] = $schemaContext->fullyQualifiedName($schemaContext->extends);
+                    $definitionContext->extends = $this->parseNamespace($tokens, $token, $parseContext);
+                    $classDefinition['extends'] = $definitionContext->fullyQualifiedName($definitionContext->extends);
                 }
                 if ($comment) {
-                    $schemaContext->line = $line;
-                    $this->analyseComment($analysis, $analyser, $comment, $schemaContext);
+                    $definitionContext->line = $line;
+                    $this->analyseComment($analysis, $analyser, $comment, $definitionContext);
                     $comment = false;
                     continue;
                 }
@@ -139,19 +133,10 @@ class StaticAnalyser
             if ($token[0] === T_TRAIT) {
                 $classDefinition = false;
                 $token = $this->nextToken($tokens, $parseContext);
-                $schemaContext = new Context(['trait' => $token[1], 'line' => $token[2]], $parseContext);
-                if ($traitDefinition) {
-                    $analysis->addTraitDefinition($traitDefinition);
-                }
-                $traitDefinition = [
-                    'trait'      => $token[1],
-                    'properties' => [],
-                    'methods'    => [],
-                    'context'    => $schemaContext,
-                ];
+                $definitionContext = new Context(['trait' => $token[1], 'line' => $token[2]], $parseContext);
                 if ($comment) {
-                    $schemaContext->line = $line;
-                    $this->analyseComment($analysis, $analyser, $comment, $schemaContext);
+                    $definitionContext->line = $line;
+                    $this->analyseComment($analysis, $analyser, $comment, $definitionContext);
                     $comment = false;
                     continue;
                 }
@@ -159,19 +144,13 @@ class StaticAnalyser
             if ($token[0] === T_STATIC) {
                 $token = $this->nextToken($tokens, $parseContext);
                 if ($token[0] === T_VARIABLE) { // static property
-                    $propertyContext = new Context(
-                        [
-                            'property' => substr($token[1], 1),
-                            'static'   => true,
-                            'line'     => $line,
-                        ],
-                        $schemaContext
-                    );
+                    $propertyContext = new Context([
+                        'property' => substr($token[1], 1),
+                        'static' => true,
+                        'line' => $line
+                            ], $definitionContext);
                     if ($classDefinition) {
                         $classDefinition['properties'][$propertyContext->property] = $propertyContext;
-                    }
-                    if ($traitDefinition) {
-                        $traitDefinition['properties'][$propertyContext->property] = $propertyContext;
                     }
                     if ($comment) {
                         $this->analyseComment($analysis, $analyser, $comment, $propertyContext);
@@ -187,18 +166,12 @@ class StaticAnalyser
                     $token = $this->nextToken($tokens, $parseContext);
                 }
                 if ($token[0] === T_VARIABLE) { // instance property
-                    $propertyContext = new Context(
-                        [
-                            'property' => substr($token[1], 1),
-                            'line'     => $line,
-                        ],
-                        $schemaContext
-                    );
+                    $propertyContext = new Context([
+                        'property' => substr($token[1], 1),
+                        'line' => $line
+                            ], $definitionContext);
                     if ($classDefinition) {
                         $classDefinition['properties'][$propertyContext->property] = $propertyContext;
-                    }
-                    if ($traitDefinition) {
-                        $traitDefinition['properties'][$propertyContext->property] = $propertyContext;
                     }
                     if ($comment) {
                         $this->analyseComment($analysis, $analyser, $comment, $propertyContext);
@@ -207,18 +180,12 @@ class StaticAnalyser
                 } elseif ($token[0] === T_FUNCTION) {
                     $token = $this->nextToken($tokens, $parseContext);
                     if ($token[0] === T_STRING) {
-                        $methodContext = new Context(
-                            [
-                                'method' => $token[1],
-                                'line'   => $line,
-                            ],
-                            $schemaContext
-                        );
+                        $methodContext = new Context([
+                            'method' => $token[1],
+                            'line' => $line
+                                ], $definitionContext);
                         if ($classDefinition) {
                             $classDefinition['methods'][$token[1]] = $methodContext;
-                        }
-                        if ($traitDefinition) {
-                            $traitDefinition['methods'][$token[1]] = $methodContext;
                         }
                         if ($comment) {
                             $this->analyseComment($analysis, $analyser, $comment, $methodContext);
@@ -230,18 +197,12 @@ class StaticAnalyser
             } elseif ($token[0] === T_FUNCTION) {
                 $token = $this->nextToken($tokens, $parseContext);
                 if ($token[0] === T_STRING) {
-                    $methodContext = new Context(
-                        [
-                            'method' => $token[1],
-                            'line'   => $line,
-                        ],
-                        $schemaContext
-                    );
+                    $methodContext = new Context([
+                        'method' => $token[1],
+                        'line' => $line
+                            ], $definitionContext);
                     if ($classDefinition) {
                         $classDefinition['methods'][$token[1]] = $methodContext;
-                    }
-                    if ($traitDefinition) {
-                        $traitDefinition['methods'][$token[1]] = $methodContext;
                     }
                     if ($comment) {
                         $this->analyseComment($analysis, $analyser, $comment, $methodContext);
@@ -252,7 +213,7 @@ class StaticAnalyser
             if (in_array($token[0], [T_NAMESPACE, T_USE]) === false) { // Skip "use" & "namespace" to prevent "never imported" warnings)
                 // Not a doc-comment for a class, property or method?
                 if ($comment) {
-                    $this->analyseComment($analysis, $analyser, $comment, new Context(['line' => $line], $schemaContext));
+                    $this->analyseComment($analysis, $analyser, $comment, new Context(['line' => $line], $definitionContext));
                     $comment = false;
                 }
             }
@@ -268,12 +229,6 @@ class StaticAnalyser
                     }
 
                     $parseContext->uses[$alias] = $target;
-
-                    // i'm in the case use trait
-                    if ($alias == $target && $classDefinition) {
-                        $classDefinition['traits'][] = $alias;
-                    }
-
                     if (Analyser::$whitelist === false) {
                         $imports[strtolower($alias)] = $target;
                     } else {
@@ -290,24 +245,19 @@ class StaticAnalyser
             }
         }
         if ($comment) { // File ends with a T_DOC_COMMENT
-            $this->analyseComment($analysis, $analyser, $comment, new Context(['line' => $line], $schemaContext));
+            $this->analyseComment($analysis, $analyser, $comment, new Context(['line' => $line], $definitionContext));
         }
         if ($classDefinition) {
             $analysis->addClassDefinition($classDefinition);
         }
-        if ($traitDefinition) {
-            $analysis->addTraitDefinition($traitDefinition);
-        }
-
         return $analysis;
     }
-
     /**
      *
      * @param Analysis $analysis
      * @param Analyser $analyser
-     * @param string   $comment
-     * @param Context  $context
+     * @param string $comment
+     * @param Context $context
      */
     private function analyseComment($analysis, $analyser, $comment, $context)
     {
@@ -317,9 +267,8 @@ class StaticAnalyser
     /**
      * The next non-whitespace, non-comment token.
      *
-     * @param array   $tokens
+     * @param array $tokens
      * @param Context $context
-     *
      * @return string|array The next token (or false)
      */
     private function nextToken(&$tokens, $context)
@@ -330,7 +279,7 @@ class StaticAnalyser
                 continue;
             }
             if ($token[0] === T_COMMENT) {
-                $pos = strpos($token[1], '@OA\\');
+                $pos = strpos($token[1], '@SWG\\');
                 if ($pos) {
                     $line = $context->line ? $context->line + $token[2] : $token[2];
                     $commentContext = new Context(['line' => $line], $context);
@@ -338,7 +287,6 @@ class StaticAnalyser
                 }
                 continue;
             }
-
             return $token;
         }
     }
@@ -353,7 +301,6 @@ class StaticAnalyser
             }
             $namespace .= $token[1];
         }
-
         return $namespace;
     }
 
@@ -386,7 +333,6 @@ class StaticAnalyser
                 break;
             }
         }
-
         return $statements;
     }
 }

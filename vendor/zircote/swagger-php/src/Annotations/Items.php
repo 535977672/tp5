@@ -1,12 +1,12 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @license Apache 2.0
  */
 
-namespace OpenApi\Annotations;
+namespace Swagger\Annotations;
 
-use OpenApi\Logger;
+use Swagger\Logger;
 
 /**
  * @Annotation
@@ -14,46 +14,39 @@ use OpenApi\Logger;
  */
 class Items extends Schema
 {
-    /**
-     * @inheritdoc
-     */
+    /** @inheritdoc */
     public static $_nested = [
-        'OpenApi\Annotations\Items' => 'items',
-        'OpenApi\Annotations\Property' => ['properties', 'property'],
-        'OpenApi\Annotations\ExternalDocumentation' => 'externalDocs',
-        'OpenApi\Annotations\Xml' => 'xml',
-        'OpenApi\Annotations\Discriminator' => 'discriminator'
+        'Swagger\Annotations\Items' => 'items',
+        'Swagger\Annotations\Property' => ['properties', 'property'],
+        'Swagger\Annotations\ExternalDocumentation' => 'externalDocs',
+        'Swagger\Annotations\Xml' => 'xml'
     ];
 
-    /**
-     * @inheritdoc
-     */
+    /** @inheritdoc */
     public static $_parents = [
-        'OpenApi\Annotations\Property',
-        'OpenApi\Annotations\AdditionalProperties',
-        'OpenApi\Annotations\Schema',
-        'OpenApi\Annotations\JsonContent',
-        'OpenApi\Annotations\XmlContent',
-        'OpenApi\Annotations\Items'
+        'Swagger\Annotations\Parameter',
+        'Swagger\Annotations\Property',
+        'Swagger\Annotations\Schema',
+        'Swagger\Annotations\Definition',
+        'Swagger\Annotations\Items',
+        'Swagger\Annotations\Header',
     ];
 
-    /**
-     * @inheritdoc
-     */
+    /** @inheritdoc */
     public function validate($parents = [], $skip = [], $ref = '')
     {
         if (in_array($this, $skip, true)) {
             return true;
         }
         $valid = parent::validate($parents, $skip);
-        if ($this->ref === UNDEFINED) {
+        if (!$this->ref) {
             $parent = end($parents);
             if (is_object($parent) && ($parent instanceof Parameter && $parent->in !== 'body' || $parent instanceof Header)) {
-                // This is a "Items Object" https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#items-object
+                // This is a "Items Object" https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#items-object
                 // A limited subset of JSON-Schema's items object.
                 $allowedTypes = ['string', 'number', 'integer', 'boolean', 'array'];
                 if (in_array($this->type, $allowedTypes) === false) {
-                    Logger::notice('@OA\Items()->type="'.$this->type.'" not allowed inside a '.$parent->_identity([]).' must be "'.implode('", "', $allowedTypes).'" in ' . $this->_context);
+                    Logger::notice('@SWG\Items()->type="'.$this->type.'" not allowed inside a '.$parent->_identity([]).' must be "'.implode('", "', $allowedTypes).'" in ' . $this->_context);
                     $valid = false;
                 }
             }

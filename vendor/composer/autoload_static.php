@@ -48,20 +48,16 @@ class ComposerStaticInit4fd264a5a38d274e78a3872c243db827
         'S' => 
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
-            'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\Process\\' => 26,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Filesystem\\' => 29,
+            'Swagger\\' => 8,
         ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'PHPMailer\\PHPMailer\\' => 20,
-        ),
-        'O' => 
-        array (
-            'OpenApi\\' => 8,
         ),
         'M' => 
         array (
@@ -118,10 +114,6 @@ class ComposerStaticInit4fd264a5a38d274e78a3872c243db827
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
-        'Symfony\\Component\\Yaml\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/yaml',
-        ),
         'Symfony\\Component\\Process\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/process',
@@ -134,6 +126,10 @@ class ComposerStaticInit4fd264a5a38d274e78a3872c243db827
         array (
             0 => __DIR__ . '/..' . '/symfony/filesystem',
         ),
+        'Swagger\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zircote/swagger-php/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -145,10 +141,6 @@ class ComposerStaticInit4fd264a5a38d274e78a3872c243db827
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
-        ),
-        'OpenApi\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/zircote/swagger-php/src',
         ),
         'Monolog\\' => 
         array (

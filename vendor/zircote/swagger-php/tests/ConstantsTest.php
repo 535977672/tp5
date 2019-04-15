@@ -1,15 +1,15 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @license Apache 2.0
  */
 
-namespace OpenApiTests;
+namespace SwaggerTests;
 
-use OpenApi\Analyser;
-use OpenApi\StaticAnalyser;
+use Swagger\Analyser;
+use Swagger\StaticAnalyser;
 
-class ConstantsTest extends OpenApiTestCase
+class ConstantsTest extends SwaggerTestCase
 {
     const URL = 'http://example.com';
 
@@ -18,38 +18,38 @@ class ConstantsTest extends OpenApiTestCase
     public function testConstant()
     {
         self::$counter++;
-        $const = 'OPENAPI_TEST_'.self::$counter;
+        $const = 'SWAGGER_TEST_'.self::$counter;
         $this->assertFalse(defined($const));
-        $this->assertOpenApiLogEntryStartsWith("[Semantical Error] Couldn't find constant ".$const);
-        $this->parseComment('@OA\Contact(email='.$const.')');
+        $this->assertSwaggerLogEntryStartsWith("[Semantical Error] Couldn't find constant ".$const);
+        $this->parseComment('@SWG\Contact(email='.$const.')');
 
         define($const, 'me@domain.org');
-        $annotations = $this->parseComment('@OA\Contact(email='.$const.')');
+        $annotations = $this->parseComment('@SWG\Contact(email='.$const.')');
         $this->assertSame('me@domain.org', $annotations[0]->email);
     }
 
     public function testFQCNConstant()
     {
-        $annotations = $this->parseComment('@OA\Contact(url=OpenApiTests\ConstantsTest::URL)');
+        $annotations = $this->parseComment('@SWG\Contact(url=SwaggerTests\ConstantsTest::URL)');
         $this->assertSame('http://example.com', $annotations[0]->url);
 
-        $annotations = $this->parseComment('@OA\Contact(url=\OpenApiTests\ConstantsTest::URL)');
+        $annotations = $this->parseComment('@SWG\Contact(url=\SwaggerTests\ConstantsTest::URL)');
         $this->assertSame('http://example.com', $annotations[0]->url);
     }
 
     public function testInvalidClass()
     {
-        $this->assertOpenApiLogEntryStartsWith("[Semantical Error] Couldn't find constant ConstantsTest::URL");
-        $this->parseComment('@OA\Contact(url=ConstantsTest::URL)');
+        $this->assertSwaggerLogEntryStartsWith("[Semantical Error] Couldn't find constant ConstantsTest::URL");
+        $this->parseComment('@SWG\Contact(url=ConstantsTest::URL)');
     }
 
     public function testAutoloadConstant()
     {
         if (class_exists('Zend\Validator\Timezone', false)) {
             $this->markTestSkipped();
+            $annotations = $this->parseComment('@SWG\Contact(name=Zend\Validator\Timezone::INVALID_TIMEZONE_LOCATION)');
+            $this->assertSame('invalidTimezoneLocation', $annotations[0]->name);
         }
-        $annotations = $this->parseComment('@OA\Contact(name=Zend\Validator\Timezone::INVALID_TIMEZONE_LOCATION)');
-        $this->assertSame('invalidTimezoneLocation', $annotations[0]->name);
     }
 
     public function testDynamicImports()
@@ -57,9 +57,9 @@ class ConstantsTest extends OpenApiTestCase
         $backup = Analyser::$whitelist;
         Analyser::$whitelist = false;
         $analyser = new StaticAnalyser();
-        $analysis = $analyser->fromFile(__DIR__.'/Fixtures/Customer.php');
+        $analysis = $analyser->fromFile(__DIR__ . '/Fixtures/Customer.php');
         // @todo Only tests that $whitelist=false doesn't trigger errors,
-        // No constants are used, because by default only class constants in the whitelisted namespace are allowed and no class in OpenApi\Annotation namespace has a constant.
+        // No constants are used, because by default only class constants in the whitelisted namespace are allowed and no class in Swagger\Annotation namespace has a constant.
 
         // Scanning without whitelisting causes issues, to check uncomment next.
         // $analyser->fromFile(__DIR__ . '/Fixtures/ThirdPartyAnnotations.php');
@@ -70,8 +70,8 @@ class ConstantsTest extends OpenApiTestCase
     {
         $backup = Analyser::$defaultImports;
         Analyser::$defaultImports = [
-            'contact' => 'OpenApi\Annotations\Contact', // use OpenApi\Annotations\Contact;
-            'ctest'   => 'OpenApiTests\ConstantsTesT' // use OpenApiTests\ConstantsTesT as CTest;
+            'contact' => 'Swagger\Annotations\Contact', // use Swagger\Annotations\Contact;
+            'ctest' => 'sWaGGerTests\ConstantsTesT' // use sWaGGerTests\ConstantsTesT as CTest;
         ];
         $annotations = $this->parseComment('@Contact(url=CTest::URL)');
         $this->assertSame('http://example.com', $annotations[0]->url);

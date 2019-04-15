@@ -11,19 +11,46 @@
 <mycat:server xmlns:mycat="http://io.mycat/">
 	<system>
 	
+	<!-- server.xml 几乎保存了所有 mycat 需要的系统配置信息。其在代码内直接的映射类为 SystemConfig 类。
+	system 这个标签内嵌套的所有 property 标签都与系统配置有关，
+	-->
+	
+	<!-- charset 属性 
+	配置字符集的时候一定要坚持 mycat 的字符集与数据库端的字符集是一致的，可以通过变量来查询：
+	show variables like 'collation_%';
+	show variables like 'character_set_%';
+	-->
+	<!-- <property name="charset">utf8</property>  -->
+	
+	<!--指定默认的解析器。目前的可用的取值有：druidparser 和 fdbparser。 1.4 默认为 druidparser，1.4 以后 fdbparser 作废-->
 	<property name="defaultSqlParser">druidparser</property>
-	<!-- <property name="serverPort">8066</property> --> <!-- 启动端口 -->
+
+	
+	<!-- 启动端口 -->
+	<!-- <property name="serverPort">8066</property> --> 
 	
 	<property name="nonePasswordLogin">0</property> <!-- 0为需要密码登陆、1为不需要密码登陆 ,默认为0，设置为1则需要指定默认账户-->
 	<property name="useHandshakeV10">1</property>
 	<property name="useSqlStat">0</property>  <!-- 1为开启实时统计、0为关闭 -->
-	<property name="useGlobleTableCheck">0</property>  <!-- 1为开启全加班一致性检测、0为关闭 -->
+	<property name="useGlobleTableCheck">0</property>  <!--全局表一致性检测 1为开启全加班一致性检测、0为关闭 增加 mycat 新任务，全局表定义中，需要有一个时间戳字段，每次记录的 update,insert，确保
+时间字段赋值，并且 mycat 增加定时检测逻辑，检测记录总量，以及最新时间戳的匹配，简单
+有效的发现全局表不一致的问题。-->
 
-		<property name="sequnceHandlerType">2</property>
+	<property name="sequnceHandlerType">2</property>
 	<property name="subqueryRelationshipCheck">false</property> <!-- 子查询中存在关联查询的情况下,检查关联字段中是否有分片字段 .默认 false -->
       <!--  <property name="useCompression">1</property>--> <!--1为开启mysql压缩协议-->
         <!--  <property name="fakeMySQLVersion">5.6.20</property>--> <!--设置模拟的MySQL版本号-->
 	<!-- <property name="processorBufferChunk">40960</property> -->
+	
+		
+	<!-- processors 属性  这个属性主要用于指定系统可用的线程数，默认值为机器 CPU 核心线程数
+							主要影响 processorBufferPool、processorBufferLocalPercent、processorExecutor 属性。
+							NIOProcessor 的个数也是由这个属性定义的，所以调优的时候可以适当的调高这个属性。
+		processorBufferChunk 属性 这个属性指定每次分配 Socket Direct Buffer 的大小，默认是 4096 个字节。这个属性也影响 buffer pool 的
+							长度。如果一次性获取的数过大 buffer 不够用 经常出现警告，则可以适当调大
+		processorBufferPool 属性 这个属性指定 bufferPool 计算 比例值。
+		processorExecutor 属性 这个属性主要用于指定 NIOProcessor 上共享的 businessExecutor 固定线程池大小。
+	-->
 	<!-- 
 	<property name="processors">1</property> 
 	<property name="processorExecutor">32</property> 
@@ -32,19 +59,45 @@
 		<property name="processorBufferPoolType">0</property>
 		<!--默认是65535 64K 用于sql解析时最大文本长度 -->
 		<!--<property name="maxStringLiteralLength">65535</property>-->
+		
+		<!--sequnceHandlerType 属性 指定使用 Mycat 全局序列的类型。0 为本地文件方式，1 为数据库方式，2 为时间戳序列方式，3 为分布式
+								ZK ID 生成器，4 为 zk 递增 id 生成-->
 		<!--<property name="sequnceHandlerType">0</property>-->
-		<!--<property name="backSocketNoDelay">1</property>-->
-		<!--<property name="frontSocketNoDelay">1</property>-->
+		
+		<!--<property name="backSocketNoDelay">1</property> TCP 连接相关属性-->
+		<!--<property name="frontSocketNoDelay">1</property>TCP 连接相关属性-->
+		
 		<!--<property name="processorExecutor">16</property>-->
 		<!--
 			<property name="serverPort">8066</property> <property name="managerPort">9066</property> 
 			<property name="idleTimeout">300000</property> <property name="bindIp">0.0.0.0</property> 
 			<property name="frontWriteQueueSize">4096</property> <property name="processors">32</property> -->
+			
 		<!--分布式事务开关，0为不过滤分布式事务，1为过滤分布式事务（如果分布式事务内只涉及全局表，则不过滤），2为不过滤分布式事务,但是记录分布式事务日志-->
 		<property name="handleDistributedTransactions">0</property>
 		
 			<!--
 			off heap for merge/order/group/limit      1开启   0关闭
+			
+			1.使用非堆内存(Direct Memory)处理跨分片结果集的 Merge/order by/group by/limit。
+			2.通过 server.xml 中的 useOffHeapForMerge 参数配置是否启用非堆内存处理跨分片结果集
+			3.Mycat 内存分层管理:
+			a.结果集处理内存；
+			b.系统预留内存；
+			c.网络处理内存共三块
+			其中网络处理内存部分全部为 Direct Memory，结果集内存分为 Direct Memory 和 HeapMemory。
+			但目前仅使用 Direct Memory。系统预留内存为 On Heap Memory。JVM 参数，必须设置- XX:MaxDirectMemorySize 和 -Xmx
+			例如:-Xmx1024m -Xmn512m -XX:MaxDirectMemorySize=2048m -Xss256K -XX:+UseParallelGC
+			上述分层可以避免 OOM 问题，以及减少 Full GC 回收时间，提高 mycat 响应速度。
+			4.使用 TimeSort 和 RadixSort，跨分片结果集合并排序使用 PriorityQueue，其中经测试 RadixSort 适合
+			LONG，INT，SHORT,Float，Double，String 数据类型排序，性能优越。
+			5.Java obj 连续内存存取，二进制序列化和反序列化，使用缓存友好的数据结构 Map 和 Row。
+			6.支持内存和外存并存的排序方式，结果集排序可以达上亿规模。此时应注意:
+			a.此时前端和后端空闲连接超时检测时间应该设置大些，避免空闲检测关闭 front 或者 backend
+			connection,造成 Mysqlclient 连接丢失时结果集无法正确。
+			b.设置-Xmn 值尽可能大些，新生代使用 UseParallelGC 垃圾回收器，-Xss 设置 512K 比较合适，物理内
+			存足够时，MaxDirectMemorySize 尽可能设置大些，可以加快结果集处理时间，
+			例如:-Xmx1024m -Xmn512m -XX:MaxDirectMemorySize=2048m -Xss256k -XX:+UseParallelGC。
 		-->
 		<property name="useOffHeapForMerge">1</property>
 
@@ -103,10 +156,28 @@
 		<property name="password">root</property>
 		<property name="schemas">mycat</property>
 		
-		<!-- 表级 DML 权限设置 -->
+		<!--
+		<property name="readOnly">true</property>
+		<property name="benchmark">11111</property>
+		<property name="usingDecrypt">1</property>
+		-->
+		<!--
+		Benchmark:mycat 连接服务降级处理
+		benchmark 基准, 当前端的整体 connection 数达到基准值是, 对来自该账户的请求开始拒绝连接，0 或不设表示不限制
+		
+		usingDecrypt 是否对密码加密默认 0 否 如需要开启配置 1，同时使用加密程序对密码加密，加密命令为：
+		-->
+		
+		<!-- 表级 DML 权限设置 
+		privileges 子节点
+		对用户的 schema 及 下级的 table 进行精细化的 DML 权限控制，privileges 节点中的 check 属性是用
+		于标识是否开启 DML 权限检查， 默认 false 标识不检查，当然 privileges 节点不配置，等同 check=false, 由于 Mycat 一个用户的 schemas 属性可配置多个 schema ，所以 privileges 的下级节点 schema 节点同样
+		可配置多个，对多库多表进行细粒度的 DML 权限控制
+		dml insert,update,select,delete 0000 (禁止增删改查)
+		-->
 		<!-- 		
 		<privileges check="false">
-			<schema name="TESTDB" dml="0110" >
+			<schema name="TESTDB" dml="0110" > 
 				<table name="tb01" dml="0000"></table>
 				<table name="tb02" dml="1111"></table>
 			</schema>

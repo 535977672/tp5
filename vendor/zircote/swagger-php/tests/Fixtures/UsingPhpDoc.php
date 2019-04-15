@@ -1,9 +1,8 @@
-<?php declare(strict_types=1);
-
-namespace OpenApiFixtures;
+<?php
+namespace SwaggerFixtures;
 
 /**
- * @OA\Info(title="Fixture for AugmentOperationTest", version="test")
+ * @SWG\Info(title="Fixture for AugmentOperationTest", version="test")
  */
 class UsingPhpDoc
 {
@@ -13,7 +12,7 @@ class UsingPhpDoc
      * Example description...
      * More description...
      *
-     * @OA\Get(path="api/test1", @OA\Response(response="200", description="a response"))
+     * @SWG\Get(path="api/test1", @SWG\Response(response="200", description="a response"))
      */
     public function methodWithDescription()
     {
@@ -22,7 +21,7 @@ class UsingPhpDoc
     /**
      * Example summary
      *
-     * @OA\Get(path="api/test2", @OA\Response(response="200", description="a response"))
+     * @SWG\Get(path="api/test2", @SWG\Response(response="200", description="a response"))
      */
     public function methodWithSummary()
     {

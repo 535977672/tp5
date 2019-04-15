@@ -1,0 +1,28 @@
+---------------------------------------------------------------
+[ 2019-04-12T15:11:41+08:00 ] 127.0.0.1 GET test.pcnfc.com/index/logt/index
+[运行时间：0.076004s] [吞吐率：13.16req/s] [内存消耗：1,679.02kb] [文件加载：82]
+[ info ] [ LANG ] D:\mf\pcnfctest\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'test.pcnfc.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] tyufddddddddddddddyfdfdtuy
+---------------------------------------------------------------
+[ 2019-04-12T15:27:19+08:00 ] 127.0.0.1 GET test.pcnfc.com/index/logt/index
+[ info ] tyu44444444444fddddddddddddddyfdfdtuy
+---------------------------------------------------------------
+[ 2019-04-12T15:27:19+08:00 ] 127.0.0.1 GET test.pcnfc.com/index/logt/index
+[ info ] tyu44444444444fddddddddddddddyfdfdtuy
+---------------------------------------------------------------
+[ 2019-04-12T15:29:02+08:00 ] 127.0.0.1 GET test.pcnfc.com/index/logt/index
+[ info ] tyu44444444444fddddddddddddddyfdfdtuy
