@@ -1,0 +1,57 @@
+---------------------------------------------------------------
+[ 2019-03-26T19:11:34+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/index
+[è¿è¡Œæ—¶é—´ï¼š5.827333s] [åžåçŽ‡ï¼š0.17req/s] [å†…å­˜æ¶ˆè€—ï¼š2,451.20kb] [æ–‡ä»¶åŠ è½½ï¼š88]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ error ] [2002]SQLSTATE[HY000] [2002] ÓÉÓÚÄ¿±ê¼ÆËã»ú»ý¼«¾Ü¾ø£¬ÎÞ·¨Á¬½Ó¡£
+[E:\php\tp5\thinkphp\library\think\db\Connection.php:528]
+---------------------------------------------------------------
+[ 2019-03-26T19:11:34+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/index
+[è¿è¡Œæ—¶é—´ï¼š9.177525s] [åžåçŽ‡ï¼š0.11req/s] [å†…å­˜æ¶ˆè€—ï¼š2,451.34kb] [æ–‡ä»¶åŠ è½½ï¼š88]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ error ] [2002]SQLSTATE[HY000] [2002] ÓÉÓÚÄ¿±ê¼ÆËã»ú»ý¼«¾Ü¾ø£¬ÎÞ·¨Á¬½Ó¡£
+[E:\php\tp5\thinkphp\library\think\db\Connection.php:528]
+---------------------------------------------------------------
+[ 2019-03-26T19:11:36+08:00 ] 127.0.0.1 GET www.tp.com/index/ct/prepare.js
+[è¿è¡Œæ—¶é—´ï¼š0.805046s] [åžåçŽ‡ï¼š1.24req/s] [å†…å­˜æ¶ˆè€—ï¼š1,710.29kb] [æ–‡ä»¶åŠ è½½ï¼š84]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'referer' => 'http://www.tp.com/index/ct/index',
+  'accept' => '*/*',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
