@@ -27,6 +27,16 @@
 		　　　　（9）取模范围约束：      sharding-by-pattern 此种规则是取模运算与范围约束的结合，主要为了后续数据迁移做准备，即可以自主决定取模后数据的节点分布
 		-->
 		<!-- 逻辑表配置  分库表 分片表  分库规则-->
+		<!-- 需要在真实的mysql创建dn1...数据库 -->
+		<!-- 
+		ruleRequired 属性 该属性用于指定表是否绑定分片规则，如果配置为 true，但没有配置具体 rule 的话 ，程序会报错。
+		type 属性 该属性定义了逻辑表的类型，目前逻辑表只有“全局表”和”普通表”两种类型。对应的配置： 全局表：global。 普通表：不指定该值为 globla 的所有表
+		autoIncrement 属性 mysql 对非自增长主键，使用 last_insert_id()是不会返回结果的，只会返回 0。所以，只有定义了自增长主键的表才可以用 last_insert_id()返回主键值
+					mycat 目前提供了自增长主键功能，但是如果对应的 mysql 节点上数据表，没有定义 auto_increment，那么在 mycat 层调用 last_insert_id()也是不会返回结果的
+
+		subTables 使用方式添加 subTables="t_order$1-2,t_order3"。 目前分表 1.6 以后开始支持 并且 dataNode 在分表条件下只能配置一个，分表条件下不支持各种条件的join 语句。
+		needAddLimit 属性 mycat 就自动的为我们加上 LIMIT 100。
+		-->
 		<table name="mycat_label" primaryKey="id"  dataNode="dn1,dn2,dn3" rule="auto-sharding-long" />
 		
 		<!-- 全局表 -->
@@ -37,29 +47,33 @@
 		<!-- <table name="company" primaryKey="ID" type="global" dataNode="dn1,dn2,dn3" /> -->
 		<!-- <table name="goods" primaryKey="ID" type="global" dataNode="dn1,dn2" /> -->
 		<!-- random sharding using mod sharind rule -->
-		<!-- <table name="hotnews" primaryKey="ID" autoIncrement="true" dataNode="dn1,dn2,dn3"
-			   rule="mod-long" />-->
+		<!-- <table name="hotnews" primaryKey="ID" autoIncrement="true" dataNode="dn1,dn2,dn3" rule="mod-long" />-->
 		<!-- <table name="dual" primaryKey="ID" dataNode="dnx,dnoracle2" type="global"
-			needAddLimit="false"/> <table name="worker" primaryKey="ID" dataNode="jdbc_dn1,jdbc_dn2,jdbc_dn3"
-			rule="mod-long" /> -->
-		<!-- <table name="employee" primaryKey="ID" dataNode="dn1,dn2"
-			   rule="sharding-by-intfile" />
-		<table name="customer" primaryKey="ID" dataNode="dn1,dn2"
+			needAddLimit="false"/> <table name="worker" primaryKey="ID" dataNode="jdbc_dn1,jdbc_dn2,jdbc_dn3" rule="mod-long" /> -->
+		<!-- <table name="employee" primaryKey="ID" dataNode="dn1,dn2" rule="sharding-by-intfile" />	-->		   
+			   <!--childTable 标签用于定义 E-R 分片的子表。通过标签上的属性与父表进行关联-->
+		<!--<table name="customer" primaryKey="ID" dataNode="dn1,dn2"
 			   rule="sharding-by-intfile">
 			<childTable name="orders" primaryKey="ID" joinKey="customer_id"
 						parentKey="id">
 				<childTable name="order_items" joinKey="order_id"
 							parentKey="id" />
 			</childTable>
-			<childTable name="customer_addr" primaryKey="ID" joinKey="customer_id"
-						parentKey="id" />
+			<childTa_id"
+						parentKey="id"ble name="customer_addr" primaryKey="ID" joinKey="customer />
 		</table>-->
-		<!-- <table name="oc_call" primaryKey="ID" dataNode="dn1$0-743" rule="latest-month-calldate"
-			/> -->
+		
+
+		<!-- <table name="oc_call" primaryKey="ID" dataNode="dn1$0-743" rule="latest-month-calldate"/> -->
+		
+		<!-- 单库分表 mycat_fenbiao mycat_fenbiao1 mycat_fenbiao2 mycat_fenbiao3都要自己创建 -->
+		<table name="mycat_fenbiao" primaryKey="id" subTables="mycat_fenbiao$1-3" rule="mod-long" dataNode="dn0"/>
+		<!-- <table name="mycat_fenbiao" primaryKey="id" dataNode="mycat_fenbiao$1-3" rule="auto-sharding-long" dataNode="dn1"/> -->
 	</schema>
-	<!-- <dataNode name="dn1$0-743" dataHost="localhost1" database="db$0-743"
-		/> -->
+	
+		<!-- <dataNode name="dn1$0-743" dataHost="localhost1" database="db$0-743"/> -->
 	<!--配置分片（dataNode）-->
+	<dataNode name="dn0" dataHost="127.0.0.1" database="mycates" />
 	<dataNode name="dn1" dataHost="127.0.0.1" database="mycat_db1" />
 	<dataNode name="dn2" dataHost="127.0.0.1" database="mycat_db2" />
 	<dataNode name="dn3" dataHost="127.0.0.1" database="mycat_db3" />
@@ -68,14 +82,71 @@
 	<dataNode	name="jdbc_dn2" dataHost="jdbchost" database="db2" />
 	<dataNode name="jdbc_dn3" 	dataHost="jdbchost" database="db3" /> -->
 	
-	<!--配置物理库分片映射（dataHost） writeType balance 等标签则是不同的策略，具体参考指南-->
+	<!--配置物理库分片映射（dataHost） writeType balance 等标签则是不同的策略，具体参考指南
+	dataHost 标签 作为 Schema.xml 中最后的一个标签，该标签在 mycat 逻辑库中也是作为最底层的标签存在，直接定义了具
+体的数据库实例、读写分离配置和心跳语句。
+	name 属性 唯一标识 dataHost 标签，供上层的标签使用
+	maxCon 属性 minCon 属性  指定每个读写实例连接池的最大连接。也就是说，标签内嵌套的 writeHost、readHost 标签都会使用这个属性的值来实例化出连接池的最大连接数
+	balance 属性 负载均衡类型，目前的取值有 3 种：
+		1. balance="0", 不开启读写分离机制，所有读操作都发送到当前可用的 writeHost 上。
+		2. balance="1"，全部的 readHost 与 stand by writeHost 参与 select 语句的负载均衡，简单的说，当双
+					主双从模式(M1->S1，M2->S2，并且 M1 与 M2 互为主备)，正常情况下，M2,S1,S2 都参与 select 语句的负载
+					均衡。
+		3. balance="2"，所有读操作都随机的在 writeHost、readhost 上分发。
+		4. balance="3"，所有读请求随机的分发到 wiriterHost 对应的 readhost 执行，writerHost 不负担读压
+					力，注意 balance=3 只在 1.4 及其以后版本有，1.3 没有。
+	writeType 属性 负载均衡类型，目前的取值有 3 种
+	1. writeType="0", 所有写操作发送到配置的第一个 writeHost，第一个挂了切到还生存的第二个
+			writeHost，重新启动后已切换后的为准，切换记录在配置文件中:dnindex.properties . 
+	2. writeType="1"，所有写操作都随机的发送到配置的 writeHost，1.5 以后废弃不推荐。
+	switchType 属性
+			- -1 表示不自动切换。
+			- 1 默认值，自动切换。
+			- 2 基于 MySQL 主从同步的状态决定是否切换。
+			
+	dbType 属性 指定后端连接的数据库类型，目前支持二进制的 mysql 协议，还有其他使用 JDBC 连接的数据库。例如：mongodb、oracle、spark 等
+	dbDriver 属性 驱动 指定连接后端数据库使用的 Driver，目前可选的值有 native 和 JDBC。使用 native 的话，因为这个值执行的
+			是二进制的 mysql 协议，所以可以使用 mysql 和 maridb。其他类型的数据库则需要使用 JDBC 驱动来支持。
+	switchType 属性
+		-1 表示不自动切换
+		1 默认值，自动切换
+		2 基于 MySQL 主从同步的状态决定是否切换
+		心跳语句为 show slave status
+		3 基于 MySQL galary cluster 的切换机制（适合集群）（1.4.1）
+		心跳语句为 show status like ‘wsrep%’
+		
+		tempReadHostAvailable 属性 如果配置了这个属性 writeHost 下面的 readHost 仍旧可用，默认 0 可配置（0、1）。
+	-->
 	<dataHost name="127.0.0.1" maxCon="1000" minCon="10" balance="0"
 			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
 		<!--heartbeat 标签代表Mycat需要对物理库心跳检测的语句，正常情况下生产案例可能配置主从，
 		或者多写 或者单库，无论哪种情况Mycat都需要维持到数据库的数据源连接，
-		因此需要定时检查后端连接可以性，心跳语句就是来作为心跳检测。-->
+		因此需要定时检查后端连接可以性，心跳语句就是来作为心跳检测。
+		
+		这个标签内指明用于和后端数据库进行心跳检查的语句。例如,MYSQL 可以使用 select user()，Oracle 可以
+		使用 select 1 from dual 等。
+		主从切换的语句必须是：show slave status
+		-->
 		<heartbeat>select user()</heartbeat>
 		<!-- can have multi write hosts -->
+		
+		<!-- 
+		用于实例化后端连接池。唯一不同的是，writeHost 指
+		定写实例、readHost 指定读实例，组着这些读写实例来满足系统的要求。
+		
+		在一个 dataHost 内可以定义多个 writeHost 和 readHost。但是，如果 writeHost 指定的后端数据库宕(dàng down机)机，
+		那么这个 writeHost 绑定的所有 readHost 都将不可用。另一方面，由于这个 writeHost 宕机系统会自动的检测
+		到，并切换到备用的 writeHost 上去。
+
+		host 用于标识不同实例，一般 writeHost 我们使用*M1，readHost 我们用*S1。
+		url 属性 后端实例连接地址，如果是使用 native 的 dbDriver，则一般为 address:port 这种形式。用 JDBC 或其他的
+				dbDriver，则需要特殊指定。当使用 JDBC 时则可以这么写：jdbc:mysql://localhost:3306/。
+		user 属性 后端存储实例需要的用户名字
+		password 属性  后端存储实例需要的密码。
+		weight 属性 权重 配置在 readhost 中作为读节点的权重（1.4 以后）
+		usingDecrypt 属性 是否对密码加密默认 0 否 如需要开启配置 1，同时使用加密程序对密码加密，加密命令为：执行 mycat jar 程序
+		
+		-->
 		<writeHost host="hostM1" url="127.0.0.1:3306" user="root"
 				   password="root">
 			<!-- can have multi read hosts writeHost、readHost代表该分片是否配置多写，主从，读写分离等高级特性-->

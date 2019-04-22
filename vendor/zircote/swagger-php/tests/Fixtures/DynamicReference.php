@@ -1,48 +1,47 @@
 <?php
-namespace OpenApiFixtures;
-
-use OpenApi\Annotations as OA;
+namespace SwaggerFixtures;
 
 /**
- * @OA\Info(title="Using a dynamic reference", version="unittest")
+ * @SWG\Info(title="Using a dynamic reference", version="unittest")
  */
 class DynamicReference
 {
 
     /**
-     * @OA\Post(
+     * @SWG\Post(
      *     path="/api/path",
      *     summary="Post to URL",
-     *     @OA\MediaType(
-     *         mediaType="multipart/form-data",
-     *         @OA\Schema(
-     *              schema="body",
-     *              @OA\Property(
+     *     @SWG\Parameter(
+     *          name="body",
+     *          in="body",
+     *          required=true,
+     *          @SWG\Schema(
+     *              @SWG\Property(
      *                  property="name",
      *                  type="string",
      *                  maximum=64
      *              ),
-     *              @OA\Property(
+     *              @SWG\Property(
      *                  property="description",
      *                  type="string"
      *              )
      *          )
      *     ),
-     *     @OA\Response(
+     *     @SWG\Response(
      *          response=200,
      *          description="Example extended response",
-     *          ref="$/components/responses/Json",
-     *          @OA\JsonContent(
-     *              ref="$/components/schemas/Product",
-     *              @OA\Property(
+     *          ref="$/responses/Json",
+     *          @SWG\Schema(
+     *              ref="$/definitions/Product",
+     *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/components/schemas/Product"
+     *                  ref="#/definitions/Product"
      *              ),
-     *              @OA\Property(
+     *              @SWG\Property(
      *                  property="test",
-     *                  ref="$/components/schemas/TestProperty"
+     *                  ref="$/definitions/TestProperty"
      *              )
-     *          ),
+     *          )
      *     ),
      *     security={{"Bearer":{}}}
      * )
@@ -53,9 +52,9 @@ class DynamicReference
 }
 
 /**
- * @OA\Schema(
- *   schema="Product",
- *   @OA\Property(
+ * @SWG\Definition(
+ *   definition="Product",
+ *   @SWG\Property(
  *      property="status",
  *      type="string",
  *      description="The status of a product",
@@ -66,8 +65,8 @@ class DynamicReference
  */
 
 /**
- * @OA\Schema(
- *   schema="TestProperty",
+ * @SWG\Definition(
+ *   definition="TestProperty",
  *   type="string",
  *   description="The status of a product",
  *   enum={"available", "discontinued"},
@@ -76,22 +75,22 @@ class DynamicReference
  */
 
 /**
- * @OA\Response(
+ * @SWG\Response(
  *      response="Json",
  *      description="the basic response",
- *      @OA\JsonContent(
- *          @OA\Property(
+ *      @SWG\Schema(
+ *          @SWG\Property(
  *              type="boolean",
  *              property="success"
  *          ),
- *          @OA\Property(
+ *          @SWG\Property(
  *              property="data"
  *          ),
- *          @OA\Property(
+ *          @SWG\Property(
  *              property="errors",
  *              type="object"
  *          ),
- *          @OA\Property(
+ *          @SWG\Property(
  *              property="token",
  *              type="string"
  *          )

@@ -1,32 +1,30 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @license Apache 2.0
  */
 
-namespace OpenApi\Annotations;
+namespace Swagger\Annotations;
 
 use Exception;
 use JsonSerializable;
 use stdClass;
-use OpenApi\Analyser;
-use OpenApi\Context;
-use OpenApi\Logger;
-use Symfony\Component\Yaml\Yaml;
+use Swagger\Analyser;
+use Swagger\Context;
+use Swagger\Logger;
 
 /**
- * The openapi annotation base class.
+ * The swagger annotation base class.
  */
 abstract class AbstractAnnotation implements JsonSerializable
 {
     /**
-     * While the OpenAPI Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.
-     * For further details see https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#specificationExtensions
+     * Allows extensions to the Swagger Schema.
      * The keys inside the array will be prefixed with `x-`.
-     *
+     * For further details see https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#vendorExtensions.
      * @var array
      */
-    public $x = UNDEFINED;
+    public $x;
 
     /**
      * @var Context
@@ -35,14 +33,12 @@ abstract class AbstractAnnotation implements JsonSerializable
 
     /**
      * Annotations that couldn't be merged by mapping or postprocessing.
-     *
      * @var array
      */
     public $_unmerged = [];
 
     /**
-     * The properties which are required by [the spec](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md)
-     *
+     * The properties which are required by [the spec](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md)
      * @var array
      */
     public static $_required = [];
@@ -54,8 +50,6 @@ abstract class AbstractAnnotation implements JsonSerializable
      *   'required' => 'boolean', // true or false
      *   'tags' => '[string]', // array containing strings
      *   'in' => ["query", "header", "path", "formData", "body"] // must be one on these
-     *   'oneOf' => ['OpenApi\Annotation\Schema'] //array of schema objects
-     *
      * @var array
      */
     public static $_types = [];
@@ -63,24 +57,21 @@ abstract class AbstractAnnotation implements JsonSerializable
     /**
      * Declarative mapping of Annotation types to properties.
      * Examples:
-     *   'OpenApi\Annotation\Info' => 'info', // Set @OA\Info annotation as the info property.
-     *   'OpenApi\Annotation\Parameter' => ['parameters'],  // Append @OA\Parameter annotations the parameters array.
-     *   'OpenApi\Annotation\PathItem' => ['paths', 'path'],  // Append @OA\PathItem annotations the paths array and use path as key.
-     *
+     *   'Swagger\Annotation\Info' => 'info', // Set @SWG\Info annotation as the info property.
+     *   'Swagger\Annotation\Parameter' => ['parameters'],  // Append @SWG\Parameter annotations the parameters array.
+     *   'Swagger\Annotation\Path' => ['paths', 'path'],  // Append @SWG\Path annotations the paths array and use path as key.
      * @var array
      */
     public static $_nested = [];
 
     /**
      * Reverse mapping of $_nested with the allowed parent annotations.
-     *
      * @var string[]
      */
     public static $_parents = [];
 
     /**
      * List of properties are blacklisted from the JSON output.
-     *
      * @var array
      */
     public static $_blacklist = ['_context', '_unmerged'];
@@ -153,8 +144,8 @@ abstract class AbstractAnnotation implements JsonSerializable
      * Merge given annotations to their mapped properties configured in static::$_nested.
      * Annotations that couldn't be merged are added to the _unmerged array.
      *
-     * @param  AbstractAnnotation[] $annotations
-     * @param  bool                 $ignore      Ignore unmerged annotations
+     * @param AbstractAnnotation[] $annotations
+     * @param bool $ignore Ignore unmerged annotations
      * @return AbstractAnnotation[] The unmerged annotations
      */
     public function merge($annotations, $ignore = false)
@@ -167,12 +158,12 @@ abstract class AbstractAnnotation implements JsonSerializable
                 if ($annotation instanceof $class) {
                     if (is_array($property)) { // Append to an array?
                         $property = $property[0];
-                        if ($this->$property === UNDEFINED) {
+                        if ($this->$property === null) {
                             $this->$property = [];
                         }
                         array_push($this->$property, $this->nested($annotation, $nestedContext));
                         $found = true;
-                    } elseif ($this->$property === UNDEFINED) {
+                    } elseif ($this->$property === null) {
                         $this->$property = $this->nested($annotation, $nestedContext);
                         $found = true;
                     }
@@ -228,27 +219,9 @@ abstract class AbstractAnnotation implements JsonSerializable
         }
     }
 
-    /**
-     * Generate the documentation in YAML format.
-     *
-     * @return string
-     */
-    public function toYaml()
+    public function __toString()
     {
-        return Yaml::dump(json_decode($this->toJson(0)), 10, 2, Yaml::DUMP_OBJECT_AS_MAP ^ Yaml::DUMP_EMPTY_ARRAY_AS_SEQUENCE);
-    }
-    
-    /**
-     * Generate the documentation in YAML format.
-     *
-     * @return string
-     */
-    public function toJson($flags = null)
-    {
-        if ($flags === null) {
-            $flags = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
-        }
-        return json_encode($this, $flags);
+        return json_encode($this, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     }
 
     public function __debugInfo()
@@ -264,25 +237,25 @@ abstract class AbstractAnnotation implements JsonSerializable
 
     /**
      * Customize the way json_encode() renders the annotations.
+     * @return array
      */
     public function jsonSerialize()
     {
         $data = new stdClass();
-        // Strip undefined values.
+        // Strip undefined and null values.
+        $classVars = get_class_vars(get_class($this));
         foreach (get_object_vars($this) as $property => $value) {
             if ($value !== UNDEFINED) {
-                $data->$property = $value;
+                if ($classVars[$property] === UNDEFINED) { // When default is undefined, null is allowed.
+                    $data->$property = $value;
+                } elseif ($value !== null) {
+                    $data->$property = $value;
+                }
             }
         }
         // Strip properties that are for internal (swagger-php) use.
         foreach (static::$_blacklist as $property) {
             unset($data->$property);
-        }
-        // Correct empty array to empty objects.
-        foreach (static::$_types as $property => $type) {
-            if ($type === 'object' && is_array($data->$property) && empty($data->$property)) {
-                $data->$property = new stdClass;
-            }
         }
         // Inject vendor properties.
         unset($data->x);
@@ -298,7 +271,7 @@ abstract class AbstractAnnotation implements JsonSerializable
                 continue;
             }
             $property = $nested[0];
-            if ($this->$property === UNDEFINED) {
+            if ($this->$property === null) {
                 continue;
             }
             $keyField = $nested[1];
@@ -308,12 +281,8 @@ abstract class AbstractAnnotation implements JsonSerializable
                     $object->$key = $item;
                 } else {
                     $key = $item->$keyField;
-                    if ($key !== UNDEFINED && empty($object->$key)) {
-                        if (method_exists($item, 'jsonSerialize')) {
-                            $object->$key = $item->jsonSerialize();
-                        } else {
-                            $object->$key = $item;
-                        }
+                    if ($key && empty($object->$key)) {
+                        $object->$key = $item->jsonSerialize();
                         unset($object->$key->$keyField);
                     }
                 }
@@ -331,9 +300,8 @@ abstract class AbstractAnnotation implements JsonSerializable
 
     /**
      * Validate annotation tree, and log notices & warnings.
-     *
-     * @param  array $parents The path of annotations above this annotation in the tree.
-     * @param  array $skip    (prevent stack overflow, when traversing an infinite dependency graph)
+     * @param array $parents The path of annotations above this annotation in the tree.
+     * @param array $skip (prevent stack overflow, when traversing an infinite dependency graph)
      * @return boolean
      * @throws Exception
      */
@@ -352,17 +320,13 @@ abstract class AbstractAnnotation implements JsonSerializable
             $class = get_class($annotation);
             if (isset(static::$_nested[$class])) {
                 $property = static::$_nested[$class];
-                if (is_array($property)) {
-                    Logger::notice('Only one @' . str_replace('OpenApi\Annotations\\', 'OA\\', get_class($annotation)) . '() allowed for ' . $this->identity() . " multiple found, skipped: " . $annotation->_context);
-                } else {
-                    Logger::notice('Only one @' . str_replace('OpenApi\Annotations\\', 'OA\\', get_class($annotation)) . '() allowed for ' . $this->identity() . " multiple found in:\n    Using: " . $this->$property->_context . "\n  Skipped: " . $annotation->_context);
-                }
+                Logger::notice('Only one @' . str_replace('Swagger\Annotations\\', 'SWG\\', get_class($annotation)) . '() allowed for ' . $this->identity() . " multiple found in:\n    Using: " . $this->$property->_context . "\n  Skipped: " . $annotation->_context);
             } elseif ($annotation instanceof AbstractAnnotation) {
                 $message = 'Unexpected ' . $annotation->identity();
                 if (count($class::$_parents)) {
                     $shortNotations = [];
                     foreach ($class::$_parents as $_class) {
-                        $shortNotations[] = '@' . str_replace('OpenApi\Annotations\\', 'OA\\', $_class);
+                        $shortNotations[] = '@' . str_replace('Swagger\Annotations\\', 'SWG\\', $_class);
                     }
                     $message .= ', expected to be inside ' . implode(', ', $shortNotations);
                 }
@@ -377,26 +341,26 @@ abstract class AbstractAnnotation implements JsonSerializable
                 continue;
             }
             $property = $nested[0];
-            if ($this->$property === UNDEFINED) {
+            if ($this->$property === null) {
                 continue;
             }
             $keys = [];
             $keyField = $nested[1];
             foreach ($this->$property as $key => $item) {
                 if (is_array($item) && is_numeric($key) === false) {
-                    Logger::notice($this->identity() . '->' . $property . ' is an object literal, use nested @' . str_replace('OpenApi\\Annotations\\', 'OA\\', $annotationClass) . '() annotation(s) in ' . $this->_context);
+                    Logger::notice($this->identity() . '->' . $property . ' is an object literal, use nested @' . str_replace('Swagger\\Annotations\\', 'SWG\\', $annotationClass) . '() annotation(s) in ' . $this->_context);
                     $keys[$key] = $item;
-                } elseif ($item->$keyField === UNDEFINED) {
-                    Logger::warning($item->identity() . ' is missing key-field: "' . $keyField . '" in ' . $item->_context);
+                } elseif (empty($item->$keyField)) {
+                    Logger::notice($item->identity() . ' is missing key-field: "' . $keyField . '" in ' . $item->_context);
                 } elseif (isset($keys[$item->$keyField])) {
-                    Logger::warning('Multiple ' . $item->_identity([]) . ' with the same ' . $keyField . '="' . $item->$keyField . "\":\n  " . $item->_context . "\n  " . $keys[$item->$keyField]->_context);
+                    Logger::notice('Multiple ' . $item->_identity([]) . ' with the same ' . $keyField . '="' . $item->$keyField . "\":\n  " . $item->_context . "\n  " . $keys[$item->$keyField]->_context);
                 } else {
                     $keys[$item->$keyField] = $item;
                 }
             }
         }
-        if (property_exists($this, 'ref') && $this->ref !== UNDEFINED) {
-            if (substr($this->ref, 0, 2) === '#/' && count($parents) > 0  && $parents[0] instanceof OpenApi) { // Internal reference
+        if (isset($this->ref)) {
+            if (substr($this->ref, 0, 2) === '#/' && count($parents) > 0  && $parents[0] instanceof Swagger) { // Internal reference
                 try {
                     $parents[0]->ref($this->ref);
                 } catch (Exception $exception) {
@@ -406,17 +370,17 @@ abstract class AbstractAnnotation implements JsonSerializable
         } else {
             // Report missing required fields (when not a $ref)
             foreach (static::$_required as $property) {
-                if ($this->$property === UNDEFINED) {
+                if ($this->$property === null || $this->$property === UNDEFINED) {
                     $message = 'Missing required field "' . $property . '" for ' . $this->identity() . ' in ' . $this->_context;
                     foreach (static::$_nested as $class => $nested) {
                         $nestedProperty = is_array($nested) ? $nested[0] : $nested;
                         if ($property === $nestedProperty) {
-                            if ($this instanceof OpenApi) {
-                                $message = 'Required @' . str_replace('OpenApi\\Annotations\\', 'OA\\', $class) . '() not found';
+                            if ($this instanceof Swagger) {
+                                $message = 'Required @' . str_replace('Swagger\\Annotations\\', 'SWG\\', $class) . '() not found';
                             } elseif (is_array($nested)) {
-                                $message = $this->identity() . ' requires at least one @' . str_replace('OpenApi\\Annotations\\', 'OA\\', $class) . '() in ' . $this->_context;
+                                $message = $this->identity() . ' requires at least one @' . str_replace('Swagger\\Annotations\\', 'SWG\\', $class) . '() in ' . $this->_context;
                             } else {
-                                $message = $this->identity() . ' requires a @' . str_replace('OpenApi\\Annotations\\', 'OA\\', $class) . '() in ' . $this->_context;
+                                $message = $this->identity() . ' requires a @' . str_replace('Swagger\\Annotations\\', 'SWG\\', $class) . '() in ' . $this->_context;
                             }
                             break;
                         }
@@ -428,7 +392,7 @@ abstract class AbstractAnnotation implements JsonSerializable
         // Report invalid types
         foreach (static::$_types as $property => $type) {
             $value = $this->$property;
-            if ($value === UNDEFINED || $value === null) {
+            if ($value === null || $value === UNDEFINED) {
                 continue;
             }
             if (is_string($type)) {
@@ -451,9 +415,9 @@ abstract class AbstractAnnotation implements JsonSerializable
     /**
      * Recursively validate all annotation properties.
      *
-     * @param  array|object $fields
-     * @param  array        $parents The path of annotations above this annotation in the tree.
-     * @param  array [      $skip]   Array with objects which are already validated
+     * @param array|object $fields
+     * @param array $parents The path of annotations above this annotation in the tree.
+     * @param array [$skip] Array with objects which are already validated
      * @return boolean
      */
     private static function _validate($fields, $parents, $skip, $baseRef)
@@ -472,7 +436,7 @@ abstract class AbstractAnnotation implements JsonSerializable
             if ($value === null || is_scalar($value) || in_array($field, $blacklist)) {
                 continue;
             }
-            $ref = $baseRef !== '' ? $baseRef.'/'.urlencode((string)$field) : urlencode((string)$field);
+            $ref = $baseRef !== '' ? $baseRef.'/'.urlencode($field) : urlencode($field);
             if (is_object($value)) {
                 if (method_exists($value, 'validate')) {
                     if (!$value->validate($parents, $skip, $ref)) {
@@ -490,8 +454,7 @@ abstract class AbstractAnnotation implements JsonSerializable
 
     /**
      * Return a identity for easy debugging.
-     * Example: "@OA\Get(path="/pets")"
-     *
+     * Example: "@SWG\Get(path="/pets")"
      * @return string
      */
     public function identity()
@@ -501,8 +464,7 @@ abstract class AbstractAnnotation implements JsonSerializable
 
     /**
      * Helper for generating the identity()
-     *
-     * @param  array $properties
+     * @param array $properties
      * @return string
      */
     protected function _identity($properties)
@@ -514,19 +476,10 @@ abstract class AbstractAnnotation implements JsonSerializable
                 $fields[] = $property . '=' . (is_string($value) ? '"' . $value . '"' : $value);
             }
         }
-        return '@' . str_replace('OpenApi\\Annotations\\', 'OA\\', get_class($this)) . '(' . implode(',', $fields) . ')';
+        return '@' . str_replace('Swagger\\Annotations\\', 'SWG\\', get_class($this)) . '(' . implode(',', $fields) . ')';
     }
 
-    /**
-     * Validates the matching of the property value to a annotation type
-     *
-     * @param string $type  The annotations property type
-     * @param mixed  $value The property value
-     *
-     * @return bool
-     * @throws \Exception
-     */
-    private function validateType($type, $value): bool
+    private function validateType($type, $value)
     {
         if (substr($type, 0, 1) === '[' && substr($type, -1) === ']') { // Array of a specified type?
             if ($this->validateType('array', $value) === false) {
@@ -540,73 +493,44 @@ abstract class AbstractAnnotation implements JsonSerializable
             }
             return true;
         }
-
-        if (is_subclass_of($type, AbstractAnnotation::class)) {
-            $type = 'object';
-        }
-
-        return $this->validateDefaultTypes($type, $value);
-    }
-
-    /**
-     * Validates default Open Api types
-     *
-     * @param string $type The property type
-     * @param mixed $value The value to validate
-     *
-     * @return bool
-     * @throws \Exception
-     */
-    private function validateDefaultTypes($type, $value): bool
-    {
         switch ($type) {
             case 'string':
                 return is_string($value);
+
             case 'boolean':
                 return is_bool($value);
+
             case 'integer':
                 return is_int($value);
+
             case 'number':
                 return is_numeric($value);
-            case 'object':
-                return is_object($value);
+
             case 'array':
-                return $this->validateArrayType($value);
+                if (is_array($value) === false) {
+                    return false;
+                }
+                $count = 0;
+                foreach ($value as $i => $item) {
+                    if ($count !== $i) { // not a array, but a hash/map
+                        return false;
+                    }
+                    $count++;
+                }
+                return true;
+
             case 'scheme':
-                return in_array($value, ['http', 'https', 'ws', 'wss'], true);
+                return in_array($value, ['http', 'https', 'ws', 'wss']);
+
             default:
                 throw new Exception('Invalid type "' . $type . '"');
         }
     }
 
     /**
-     * Validate array type
-     *
-     * @param mixed $value
-     *
-     * @return bool
-     */
-    private function validateArrayType($value): bool
-    {
-        if (is_array($value) === false) {
-            return false;
-        }
-        $count = 0;
-        foreach ($value as $i => $item) {
-            //not a array, but a hash/map
-            if ($count !== $i) {
-                return false;
-            }
-            $count++;
-        }
-        return true;
-    }
-
-    /**
      * Wrap the context with a reference to the annotation it is nested in.
-     *
-     * @param  AbstractAnnotation $annotation
-     * @param  Context            $nestedContext
+     * @param AbstractAnnotation $annotation
+     * @param Context $nestedContext
      * @return AbstractAnnotation
      */
     private function nested($annotation, $nestedContext)

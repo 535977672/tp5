@@ -1,34 +1,29 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @license Apache 2.0
  */
 
-namespace OpenApi;
+namespace Swagger;
 
 use Closure;
 use Exception;
 use SplObjectStorage;
 use stdClass;
-use OpenApi\Annotations\AbstractAnnotation;
-use OpenApi\Annotations\OpenApi;
-use OpenApi\Processors\AugmentOperations;
-use OpenApi\Processors\AugmentParameters;
-use OpenApi\Processors\AugmentProperties;
-use OpenApi\Processors\AugmentSchemas;
-use OpenApi\Processors\BuildPaths;
-use OpenApi\Processors\CleanUnmerged;
-use OpenApi\Processors\InheritProperties;
-use OpenApi\Processors\MergeIntoComponents;
-use OpenApi\Processors\MergeIntoOpenApi;
-use OpenApi\Processors\MergeJsonContent;
-use OpenApi\Processors\MergeXmlContent;
-use OpenApi\Processors\OperationId;
-use OpenApi\Processors\ImportTraits;
+use Swagger\Annotations\AbstractAnnotation;
+use Swagger\Annotations\Swagger;
+use Swagger\Processors\AugmentDefinitions;
+use Swagger\Processors\AugmentOperations;
+use Swagger\Processors\AugmentParameters;
+use Swagger\Processors\AugmentProperties;
+use Swagger\Processors\BuildPaths;
+use Swagger\Processors\CleanUnmerged;
+use Swagger\Processors\HandleReferences;
+use Swagger\Processors\InheritProperties;
+use Swagger\Processors\MergeIntoSwagger;
 
 /**
- * Result of the analyser which pretends to be an array of annotations, but also contains detected classes and helper
- * functions for the processors.
+ * Result of the analyser which pretends to be an array of annotations, but also contains detected classes and helper functions for the processors.
  */
 class Analysis
 {
@@ -39,28 +34,18 @@ class Analysis
 
     /**
      * Class definitions
-     *
      * @var array
      */
     public $classes = [];
 
     /**
-     * Trait definitions
-     *
-     * @var array
+     * The target Swagger annotation.
+     * @var Swagger
      */
-    public $traits = [];
-
-    /**
-     * The target OpenApi annotation.
-     *
-     * @var OpenApi
-     */
-    public $openapi;
+    public $swagger;
 
     /**
      * Registry for the post-processing operations.
-     *
      * @var Closure[]
      */
     private static $processors;
@@ -82,7 +67,7 @@ class Analysis
 
     /**
      * @param AbstractAnnotation $annotation
-     * @param Context            $context
+     * @param Context $context
      */
     public function addAnnotation($annotation, $context)
     {
@@ -91,9 +76,6 @@ class Analysis
         }
         if ($annotation instanceof AbstractAnnotation) {
             $context = $annotation->_context;
-            if ($this->openapi === null && $annotation instanceof OpenApi) {
-                $this->openapi = $annotation;
-            }
         } else {
             if ($context->is('annotations') === false) {
                 $context->annotations = [];
@@ -125,7 +107,7 @@ class Analysis
     }
 
     /**
-     * @param array   $annotations
+     * @param array $annotations
      * @param Context $context
      */
     public function addAnnotations($annotations, $context)
@@ -145,15 +127,6 @@ class Analysis
     }
 
     /**
-     * @param array $definition
-     */
-    public function addTraitDefinition($definition)
-    {
-        $trait = $definition['context']->fullyQualifiedName($definition['trait']);
-        $this->traits[$trait] = $definition;
-    }
-
-    /**
      * @param Analysis $analysis
      */
     public function addAnalysis($analysis)
@@ -162,9 +135,8 @@ class Analysis
             $this->addAnnotation($annotation, $analysis->annotations[$annotation]);
         }
         $this->classes = array_merge($this->classes, $analysis->classes);
-        $this->traits = array_merge($this->traits, $analysis->traits);
-        if ($this->openapi === null && $analysis->openapi) {
-            $this->openapi = $analysis->openapi;
+        if ($this->swagger === null && $analysis->swagger) {
+            $this->swagger = $analysis->swagger;
             $analysis->target->_context->analysis = $this;
         }
     }
@@ -178,7 +150,6 @@ class Analysis
                 $definitions = array_merge($definitions, $this->getSubClasses($subclass));
             }
         }
-
         return $definitions;
     }
 
@@ -198,56 +169,9 @@ class Analysis
     }
 
     /**
-     * Returns an array of traits used by the given class or by classes which it extends
      *
-     * @param string  $class
-     *
-     * @return array
-     */
-    public function getTraitsOfClass($class)
-    {
-        $definitions = [];
-
-        // in case there is a hierarchy of classes
-        $classes = $this->getSuperClasses($class);
-        if (is_array($classes)) {
-            foreach ($classes as $subClass) {
-                if (isset($subClass['traits'])) {
-                    foreach ($subClass['traits'] as $classTrait) {
-                        foreach ($this->traits as $trait) {
-                            if ($classTrait === $trait['trait']) {
-                                $traitDefinition[$trait['trait']] = $trait;
-                                $definitions = array_merge($definitions, $traitDefinition);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // trait used by the given class
-        $classDefinition = isset($this->classes[$class]) ? $this->classes[$class] : null;
-        if (!$classDefinition || empty($classDefinition['traits'])) {
-            return $definitions;
-        }
-        $classTraits = $classDefinition['traits'];
-        foreach ($this->traits as $trait) {
-            foreach ($classTraits as $classTrait => $name) {
-                if ($trait['trait'] === $name) {
-                    $traitDefinition[$name] = $trait;
-                    $definitions = array_merge($definitions, $traitDefinition);
-                }
-            }
-        }
-
-        return $definitions;
-    }
-
-    /**
-     *
-     * @param string  $class
+     * @param string $class
      * @param boolean $strict Innon-strict mode childclasses are also detected.
-     *
      * @return array
      */
     public function getAnnotationsOfType($class, $strict = false)
@@ -266,15 +190,13 @@ class Analysis
                 }
             }
         }
-
         return $annotations;
     }
 
     /**
      *
      * @param object $annotation
-     *
-     * @return \OpenApi\Context
+     * @return \Swagger\Context
      */
     public function getContext($annotation)
     {
@@ -295,20 +217,19 @@ class Analysis
     }
 
     /**
-     * Build an analysis with only the annotations that are merged into the OpenAPI annotation.
+     * Build an analysis with only the annotations that are merged into the swagger annotation.
      *
      * @return Analysis
      */
     public function merged()
     {
-        if (!$this->openapi) {
-            throw new Exception('No openapi target set. Run the MergeIntoOpenApi processor');
+        if (!$this->swagger) {
+            throw new Exception('No swagger target set. Run the MergeIntoSwagger processor');
         }
-        $unmerged = $this->openapi->_unmerged;
-        $this->openapi->_unmerged = [];
-        $analysis = new Analysis([$this->openapi]);
-        $this->openapi->_unmerged = $unmerged;
-
+        $unmerged = $this->swagger->_unmerged;
+        $this->swagger->_unmerged = [];
+        $analysis = new Analysis([$this->swagger]);
+        $this->swagger->_unmerged = $unmerged;
         return $analysis;
     }
 
@@ -338,13 +259,11 @@ class Analysis
                 $result->unmerged->annotations->attach($annotation, $this->annotations[$annotation]);
             }
         }
-
         return $result;
     }
 
     /**
      * Apply the processor(s)
-     *
      * @param Closure|Closure[] $processors One or more processors
      */
     public function process($processors = null)
@@ -362,7 +281,6 @@ class Analysis
 
     /**
      * Get direct access to the processors array.
-     *
      * @return array reference
      */
     public static function &processors()
@@ -370,30 +288,22 @@ class Analysis
         if (!self::$processors) {
             // Add default processors.
             self::$processors = [
-                new MergeIntoOpenApi(),
-                new MergeIntoComponents(),
-                new ImportTraits(),
-                new AugmentSchemas(),
-                new AugmentProperties(),
+                new MergeIntoSwagger(),
                 new BuildPaths(),
-                // new HandleReferences(),
-
+                new HandleReferences(),
+                new AugmentDefinitions(),
+                new AugmentProperties(),
                 new InheritProperties(),
                 new AugmentOperations(),
                 new AugmentParameters(),
-                new MergeJsonContent(),
-                new MergeXmlContent(),
-                new OperationId(),
                 new CleanUnmerged(),
             ];
         }
-
         return self::$processors;
     }
 
     /**
      * Register a processor
-     *
      * @param Closure $processor
      */
     public static function registerProcessor($processor)
@@ -403,7 +313,6 @@ class Analysis
 
     /**
      * Unregister a processor
-     *
      * @param Closure $processor
      */
     public static function unregisterProcessor($processor)
@@ -418,11 +327,10 @@ class Analysis
 
     public function validate()
     {
-        if ($this->openapi) {
-            return $this->openapi->validate();
+        if ($this->swagger) {
+            return $this->swagger->validate();
         }
-        Logger::notice('No openapi target set. Run the MergeIntoOpenApi processor before validate()');
-
+        Logger::notice('No swagger target set. Run the MergeIntoSwagger processor before validate()');
         return false;
     }
 }
