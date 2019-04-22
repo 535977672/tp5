@@ -1,0 +1,135 @@
+---------------------------------------------------------------
+[ 2019-04-22T23:48:49+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：3.405195s] [吞吐率：0.29req/s] [内存消耗：1,685.83kb] [文件加载：83]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1551624035',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-04-22T23:49:21+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.343020s] [吞吐率：2.92req/s] [内存消耗：1,685.91kb] [文件加载：83]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; monitor_count=1; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555948132',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-04-22T23:49:35+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.193209s] [吞吐率：5.18req/s] [内存消耗：1,685.91kb] [文件加载：83]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=2; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555948162',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-04-22T23:50:59+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.248014s] [吞吐率：4.03req/s] [内存消耗：1,753.80kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555948176; monitor_count=4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [1]Call to undefined function app\index\controller\create_dirs()[E:\php\tp5\application\index\controller\Zip.php:56]
+---------------------------------------------------------------
+[ 2019-04-22T23:51:38+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.305017s] [吞吐率：3.28req/s] [内存消耗：1,746.55kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=5; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555948260',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [2]file_put_contents(static/zip/32423434/辅导费给对方/): failed to open stream: No such file or directory[E:\php\tp5\application\index\controller\Zip.php:72]
+---------------------------------------------------------------
+[ 2019-04-22T23:53:29+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.444025s] [吞吐率：2.25req/s] [内存消耗：1,746.80kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=6; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555948300',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [2]file_put_contents(static/zip/32423434/辅导费给对方/1213fsdf/的说法是的212X.jpg): failed to open stream: Invalid argument[E:\php\tp5\application\index\controller\Zip.php:74]
+---------------------------------------------------------------
+[ 2019-04-22T23:58:10+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.602633s] [吞吐率：1.66req/s] [内存消耗：1,747.45kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=7; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555948410',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [2]file_put_contents(static/zip/32423434/辅导费给对方/1213fsdf/的说法是的212X.jpg): failed to open stream: Invalid argument[E:\php\tp5\application\index\controller\Zip.php:75]

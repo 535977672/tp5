@@ -1,0 +1,456 @@
+---------------------------------------------------------------
+[ 2019-04-23T00:04:55+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.623036s] [吞吐率：1.61req/s] [内存消耗：1,746.98kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=8; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555948691',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [2]file_put_contents(static/zip/32423434/辅导费给对方/): failed to open stream: No such file or directory[E:\php\tp5\application\index\controller\Zip.php:75]
+---------------------------------------------------------------
+[ 2019-04-23T00:05:09+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.365418s] [吞吐率：2.74req/s] [内存消耗：1,746.69kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=9; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949096',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [2]file_put_contents(static/zip/2132312/2132312/): failed to open stream: No such file or directory[E:\php\tp5\application\index\controller\Zip.php:75]
+---------------------------------------------------------------
+[ 2019-04-23T00:05:12+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.322018s] [吞吐率：3.11req/s] [内存消耗：1,746.70kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=10; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949110',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [2]file_put_contents(static/zip/2132312/2132312/): failed to open stream: No such file or directory[E:\php\tp5\application\index\controller\Zip.php:75]
+---------------------------------------------------------------
+[ 2019-04-23T00:05:43+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：1.044055s] [吞吐率：0.96req/s] [内存消耗：1,746.99kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=11; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949113',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [2]file_put_contents(static/zip/32423434/辅导费给对方/1213fsdf/的说法是的212X.jpg): failed to open stream: Invalid argument[E:\php\tp5\application\index\controller\Zip.php:75]
+---------------------------------------------------------------
+[ 2019-04-23T00:08:51+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.575033s] [吞吐率：1.74req/s] [内存消耗：1,747.36kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=12; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949144',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [8]iconv(): Detected an illegal character in input string[E:\php\tp5\application\index\controller\Zip.php:105]
+---------------------------------------------------------------
+[ 2019-04-23T00:10:36+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.439624s] [吞吐率：2.27req/s] [内存消耗：1,747.37kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=13; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949332',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [8]iconv(): Detected an illegal character in input string[E:\php\tp5\application\index\controller\Zip.php:105]
+---------------------------------------------------------------
+[ 2019-04-23T00:13:45+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.431025s] [吞吐率：2.32req/s] [内存消耗：1,747.24kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=14; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949437',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [8]iconv(): Detected an illegal character in input string[E:\php\tp5\application\index\controller\Zip.php:51]
+---------------------------------------------------------------
+[ 2019-04-23T00:14:13+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.430025s] [吞吐率：2.33req/s] [内存消耗：1,746.83kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=15; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949626',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [8]iconv(): Detected an illegal character in input string[E:\php\tp5\application\index\controller\Zip.php:51]
+---------------------------------------------------------------
+[ 2019-04-23T00:14:26+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.407023s] [吞吐率：2.46req/s] [内存消耗：1,746.70kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=16; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949654',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [8]iconv(): Detected an illegal character in input string[E:\php\tp5\application\index\controller\Zip.php:51]
+---------------------------------------------------------------
+[ 2019-04-23T00:14:48+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.514228s] [吞吐率：1.94req/s] [内存消耗：1,746.78kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=17; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949667',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [8]iconv(): Detected an illegal character in input string[E:\php\tp5\application\index\controller\Zip.php:51]
+---------------------------------------------------------------
+[ 2019-04-23T00:15:57+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.802046s] [吞吐率：1.25req/s] [内存消耗：1,684.32kb] [文件加载：81]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=18; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949689',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-04-23T00:16:50+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.488028s] [吞吐率：2.05req/s] [内存消耗：1,746.75kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949689; monitor_count=19',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [8]iconv(): Detected an illegal character in input string[E:\php\tp5\application\index\controller\Zip.php:51]
+---------------------------------------------------------------
+[ 2019-04-23T00:17:03+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.283616s] [吞吐率：3.53req/s] [内存消耗：1,746.77kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=20; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949811',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [8]iconv(): Detected an illegal character in input string[E:\php\tp5\application\index\controller\Zip.php:51]
+---------------------------------------------------------------
+[ 2019-04-23T00:17:19+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.204012s] [吞吐率：4.90req/s] [内存消耗：1,746.74kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=21; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949824',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [8]iconv(): Detected an illegal character in input string[E:\php\tp5\application\index\controller\Zip.php:51]
+---------------------------------------------------------------
+[ 2019-04-23T00:19:32+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.298017s] [吞吐率：3.36req/s] [内存消耗：1,754.48kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=22; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949840',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [1]Cannot pass parameter 3 by reference[E:\php\tp5\application\index\controller\Zip.php:52]
+---------------------------------------------------------------
+[ 2019-04-23T00:19:59+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.570231s] [吞吐率：1.75req/s] [内存消耗：1,746.67kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=23; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555949973',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [2]mkdir(): Invalid argument[E:\php\tp5\application\index\controller\Zip.php:119]
+---------------------------------------------------------------
+[ 2019-04-23T00:21:06+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.453026s] [吞吐率：2.21req/s] [内存消耗：1,747.22kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=24; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555950000',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [2]mkdir(): Invalid argument[E:\php\tp5\application\index\controller\Zip.php:119]
+---------------------------------------------------------------
+[ 2019-04-23T00:21:54+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.835047s] [吞吐率：1.20req/s] [内存消耗：1,684.34kb] [文件加载：81]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=25; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555950069',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-04-23T00:23:05+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.859049s] [吞吐率：1.16req/s] [内存消耗：1,684.34kb] [文件加载：81]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555950069; monitor_count=26',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-04-23T00:27:47+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：1.660095s] [吞吐率：0.60req/s] [内存消耗：1,746.79kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555950069; monitor_count=27',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [2]file_put_contents(static/zip/32423434/辅导费给对方/1213fsdf/的说法是的212X.jpg): failed to open stream: Invalid argument[E:\php\tp5\application\index\controller\Zip.php:79]
+---------------------------------------------------------------
+[ 2019-04-23T00:28:26+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：0.942053s] [吞吐率：1.06req/s] [内存消耗：1,747.27kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=28; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555950468',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [2]file_put_contents(static/zip/32423434/辅导费给对方/1213fsdf/的说法是的212X.jpg): failed to open stream: Invalid argument[E:\php\tp5\application\index\controller\Zip.php:79]
+---------------------------------------------------------------
+[ 2019-04-23T00:29:06+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：2.463141s] [吞吐率：0.41req/s] [内存消耗：1,746.77kb] [文件加载：86]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=29; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555950507',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ error ] [2]file_put_contents(static/zip/32423434/辅导费给对方/1213fsdf/的说法是的212X.jpg): failed to open stream: Invalid argument[E:\php\tp5\application\index\controller\Zip.php:79]
+---------------------------------------------------------------
+[ 2019-04-23T00:30:25+08:00 ] 127.0.0.1 GET www.tp.com/index/zip/index
+[运行时间：1.122262s] [吞吐率：0.89req/s] [内存消耗：1,684.30kb] [文件加载：81]
+[ info ] [ LANG ] E:\php\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=141166900.475862584965909250.1551624034256.1643; Hm_lvt_cdce8cda34e84469b1c8015204129522=1555948132; monitor_count=30; Hm_lpvt_cdce8cda34e84469b1c8015204129522=1555950547',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.tp.com',
+)
+[ info ] [ PARAM ] array (
+)
