@@ -105,8 +105,8 @@ class Index extends Controller
             'name'=>18325048987,
             'password'=>'2dc95bfa34d40f20b94296f3c291c645',
         ];
-       //$url = 'http://api-h5.gebodata.com/hcb/v1/users/login';$id=133;
-        $url = 'http://test.nfc.com/hcb/v1/users/login';$id=94;
+       //$url = 'http://api-h5.gebodata.com/hcb/h5/users/login';$id=133;
+        $url = 'http://test.nfc.com/hcb/app/users/login';$id=94;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -126,9 +126,9 @@ class Index extends Controller
         $rr = json_decode($ret, true);
         var_dump($rr);
         
-        echo  'Banaer '.base64_encode(time() .':'.$id.':'.$rr['data']['access_token']);
+        echo  'Banaer '.base64_encode(time() .':T03:13:'.$id.':'.$rr['data']['access_token']);
         echo '<br/>';
-        echo  'Banaer '.time() .':'.$id.':'.$rr['data']['access_token'];
+        echo  'Banaer '.time() .':'.$id.':T03:13:'.$rr['data']['access_token'];
     }
     
     public function hcbs(){
@@ -137,8 +137,8 @@ class Index extends Controller
             'name'=>18325048987,
             'password'=>'2dc95bfa34d40f20b94296f3c291c645',
         ];
-       $url = 'http://api-h5.gebodata.com/hcb/v1/users/login';$id=133;
-        // $url = 'http://test.nfc.com/hcb/v1/users/login';$id=94;
+       $url = 'http://api-h5.gebodata.com/hcb/app/users/login';$id=133;
+        // $url = 'http://test.nfc.com/hcb/h5/users/login';$id=94;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -158,9 +158,9 @@ class Index extends Controller
         $rr = json_decode($ret, true);
         var_dump($rr);
         
-        echo  'Banaer '.base64_encode(time() .':'.$id.':'.$rr['data']['access_token']);
+        echo  'Banaer '.base64_encode(time() .':T03:13:'.$id.':'.$rr['data']['access_token']);
         echo '<br/>';
-        echo  'Banaer '.time() .':'.$id.':'.$rr['data']['access_token'];
+        echo  'Banaer '.time() .':'.$id.':T03:13:'.$rr['data']['access_token'];
     }
     
     
@@ -171,8 +171,8 @@ class Index extends Controller
             'name'=>13641677914,
             'password'=>'b8a1099b57fb53d28fba7d5717e317ea',
         ];
-       $url = 'http://api-h5.gebodata.com/hcb/v1/users/login';$id=140;
-        // $url = 'http://test.nfc.com/hcb/v1/users/login';$id=94;
+       $url = 'http://api-h5.gebodata.com/hcb/app/users/login';$id=140;
+        // $url = 'http://test.nfc.com/hcb/h5/users/login';$id=94;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -192,8 +192,8 @@ class Index extends Controller
         $rr = json_decode($ret, true);
         var_dump($rr);
         
-        echo  'Banaer '.base64_encode(time() .':'.$id.':'.$rr['data']['access_token']);
+        echo  'Banaer '.base64_encode(time() .':T03:13:'.$id.':'.$rr['data']['access_token']);
         echo '<br/>';
-        echo  'Banaer '.time() .':'.$id.':'.$rr['data']['access_token'];
+        echo  'Banaer '.time() .':'.$id.':T03:13:'.$rr['data']['access_token'];
     }
 }

@@ -1,0 +1,142 @@
+---------------------------------------------------------------
+[ 2019-04-18T18:28:31+08:00 ] 127.0.0.1 GET test.pcnfc.com/index/index/hcb
+[运行时间：3.255913s] [吞吐率：0.31req/s] [内存消耗：1,708.42kb] [文件加载：81]
+[ info ] [ LANG ] D:\mf\pcnfctest\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'test.pcnfc.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-04-18T18:29:33+08:00 ] 127.0.0.1 GET test.pcnfc.com/index/index/hcb
+[运行时间：0.260533s] [吞吐率：3.84req/s] [内存消耗：1,708.17kb] [文件加载：81]
+[ info ] [ LANG ] D:\mf\pcnfctest\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'test.pcnfc.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-04-18T18:31:58+08:00 ] 127.0.0.1 GET test.pcnfc.com/index/index/hcb
+[运行时间：0.251532s] [吞吐率：3.98req/s] [内存消耗：1,708.17kb] [文件加载：81]
+[ info ] [ LANG ] D:\mf\pcnfctest\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'test.pcnfc.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-04-18T18:32:47+08:00 ] 127.0.0.1 GET test.pcnfc.com/index/index/hcb
+[运行时间：0.791100s] [吞吐率：1.26req/s] [内存消耗：1,708.20kb] [文件加载：81]
+[ info ] [ LANG ] D:\mf\pcnfctest\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'test.pcnfc.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-04-18T18:54:49+08:00 ] 127.0.0.1 GET test.pcnfc.com/index/index/hcbs2
+[运行时间：0.394550s] [吞吐率：2.53req/s] [内存消耗：1,707.95kb] [文件加载：81]
+[ info ] [ LANG ] D:\mf\pcnfctest\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'test.pcnfc.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-04-18T18:54:58+08:00 ] 127.0.0.1 GET test.pcnfc.com/index/index/hcbs2
+[运行时间：0.158020s] [吞吐率：6.33req/s] [内存消耗：1,708.12kb] [文件加载：81]
+[ info ] [ LANG ] D:\mf\pcnfctest\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'test.pcnfc.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-04-18T18:55:43+08:00 ] 127.0.0.1 GET test.pcnfc.com/index/index/hcbs2
+[运行时间：0.169521s] [吞吐率：5.90req/s] [内存消耗：1,708.13kb] [文件加载：81]
+[ info ] [ LANG ] D:\mf\pcnfctest\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'test.pcnfc.com',
+)
+[ info ] [ PARAM ] array (
+)
+---------------------------------------------------------------
+[ 2019-04-18T19:07:39+08:00 ] 127.0.0.1 GET test.pcnfc.com/index/index/hcbs2
+[运行时间：0.475560s] [吞吐率：2.10req/s] [内存消耗：1,708.13kb] [文件加载：81]
+[ info ] [ LANG ] D:\mf\pcnfctest\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'test.pcnfc.com',
+)
+[ info ] [ PARAM ] array (
+)
