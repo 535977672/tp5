@@ -4,7 +4,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Db;
 use Exception;
-class t extends Controller
+class Trans extends Controller
 {
     
     public function index()
