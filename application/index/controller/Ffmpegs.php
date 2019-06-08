@@ -53,7 +53,9 @@ ini_set('memory_limit', '-1');
  * -shortest 当最短的输入流结束后即停止编码和输出 shortest=1就是当输入停止的时候延迟1秒结束
  * nullsrc=s=256x256 nullsrc作为视频源，宽高为256x256， 默认绿屏 
  * '-vf "delogo=x=15:y=5:w=320:h=120:show=1" 去logo,show=1,显示确认框确认坐标
- * 
+ * overlay=0+t*20:0 这里在x坐标上加上了+t*10，于是水印就会慢慢向右边移动 t=2时x=40
+ * overlay=x='if(gte(t,2),10,NAN)':(main_h-overlay_h)/2 特定时间显示水印
+ * if(条件,条件为true时的值,条件为false时的值)
  * 
  *  选项
  *  - -y / -n
@@ -77,6 +79,57 @@ ini_set('memory_limit', '-1');
  *      drawtext
  *      fade
  *      fps
+fade
+•type, t
+指定类型是in代表淡入，out代表淡出，默认为in
+
+•start_frame, s
+指定应用效果的开始时间，默认为0.
+
+•nb_frames, n
+应用效果的最后一帧序数。
+对于淡入，在此帧后将以本身的视频输出，对于淡出此帧后将以设定的颜色输出，默认25.
+
+•alpha
+如果设置为1，则只在透明通道实施效果（如果只存在一个输入），默认为0
+
+•start_time, st
+指定按秒的开始时间戳来应用效果。
+如果start_frame和start_time都被设置，则效果会在更后的时间开始，默认为0
+
+•duration, d
+按秒的效果持续时间。
+对于淡入，在此时后将以本身的视频输出，对于淡出此时后将以设定的颜色输出。
+如果duration和nb_frames同时被设置，将采用duration值。默认为0（此时采用nb_frames作为默认）
+
+•color, c
+设置淡化后（淡入前）的颜色，默认为"black".
+•30帧开始淡入
+fade=in:0:30
+•等效上面
+fade=t=in:s=0:n=30
+•在200帧视频中从最后45帧淡出
+fade=out:155:45 fade=type=out:start_frame=155:nb_frames=45
+•对1000帧的视频25帧淡入，最后25帧淡出:
+fade=in:0:25, fade=out:975:25
+•让前5帧为黄色，然后在5-24淡入:
+fade=in:5:20:color=yellow
+•仅在透明通道的第25开始淡入
+fade=in:0:25:alpha=1
+•设置5.5秒的黑场，然后开始0.5秒的淡入:
+fade=t=in:st=5.5:d=0.5
+
+
+
+
+
+
+
+
+
+
+
+
  */
 class Ffmpegs extends Controller
 {
@@ -109,11 +162,15 @@ class Ffmpegs extends Controller
 //        $url = 'static/ffmpeg/2.mp4';
 //        $durl = 'static/ffmpeg/'. $this->randName() .'/2_image%d.jpg';
 //        $this->videoToImg($url, $durl);
-//        
-//        
-
-//        $durl2 = 'static/ffmpeg/1_1.mp4';
-//        $this->imgToVideo($durl, $durl2, 30);
+        
+//        $url = 'static/ffmpeg/1.mp4';
+//        $dts = 'static/ffmpeg/'. $this->randName() .'/1_ts.ts';
+//        $this->videoToTs($url, $dts);
+//        $durl = 'static/ffmpeg/'. $this->randName() .'/1_image%d.jpg';
+//        $this->videoToImg($dts, $durl, 30);
+        $durl = 'static/ffmpeg/1/1_image%d.jpg';
+        $durl2 = 'static/ffmpeg/1_1.mp4';
+        $this->imgToVideo($durl, $durl2, 30, false);
         
 //        $url = 'static/ffmpeg/1.mp4';
 //        $info = $this->videoInfo($url);
@@ -150,7 +207,26 @@ class Ffmpegs extends Controller
         
     }
     
-    public function test() {
+    public function test1() {
+        $source =  'static/ffmpeg/1.mp4';
+        
+        $file = 'static/ffmpeg/'. $this->randName() .'.mp4';
+        $file2 = 'static/ffmpeg/'. $this->randName() .'.mp4';
+        $info = $this->videoInfo($source);
+        $this->logo($source, $file, 15, 15, 330, 120);
+        $this->logo($file, $file2, $info[0]['width']-345, $info[0]['height']-135, 330, 120);
+        
+        $file3 = 'static/ffmpeg/'. $this->randName() .'.mp4';
+        $info = $this->overlay4($file2,$file3);
+        
+        $file4 = 'static/ffmpeg/1_overlay4_2.mp4';
+        $info = $this->overlay2([$file3,$file2,$file2],$file4);
+        @unlink($file);
+        @unlink($file2);
+        @unlink($file3);
+    }
+    
+    public function test2() {
         $source =  'static/ffmpeg/1.mp4';
         $file = 'static/ffmpeg/1_logo.mp4';
         $file2 = 'static/ffmpeg/1_logo2.mp4';
@@ -158,13 +234,55 @@ class Ffmpegs extends Controller
         $this->logo($source, $file, 15, 15, 330, 120);
         $this->logo($file, $file2, $info[0]['width']-345, $info[0]['height']-135, 330, 120);
         
-        $file3 = 'static/ffmpeg/1_overlay4_1.mp4';
-        $info = $this->overlay4($file2,$file3);
+        $info = $this->videoInfo($file2);
+        $w = $info[0]['width'];
+        $h = $info[0]['height'];
         
-        $file4 = 'static/ffmpeg/1_overlay4_2.mp4';
-        $info = $this->overlay2([$file3,$file2,$file2],$file4);
+        $file3 =  'static/ffmpeg/1_overlay_2.mp4';
+        //视频覆盖+移动
+        $str = $this->ffmpeg . " -y -re -i $file2 -re -i $file2 -re -i $file2 -re -i $file2 -re -i $file2 " 
+                . '-filter_complex "'
+                . '[1:v] setpts=PTS-STARTPTS, scale='. $w*4/5 .'x'. $h*4/5 .' [ov1]; '
+                . '[2:v] setpts=PTS-STARTPTS, scale='. $w*3/5 .'x'. $h*3/5 .' [ov2]; '
+                . '[3:v] setpts=PTS-STARTPTS, scale='. $w*2/5 .'x'. $h*2/5 .' [ov3]; '
+                . '[4:v] setpts=PTS-STARTPTS, scale='. $w*1/5 .'x'. $h*1/5 .' [ov4]; '
+                . '[0:v] [ov1] overlay=shortest=1:x=\'if(gte(t,3),'. $w/10 .',NAN)\':y=\'if(gte(t,5),(t-5)*30+'. $h/10 .',NAN)\' [tmp1]; '
+                . '[tmp1] [ov2] overlay=shortest=1:x=\'if(gte(t,5),'. $w/5 .',NAN)\':y=\'if(gte(t,7),'. $h/5 .'-(t-7)*40,NAN)\' [tmp2]; '
+                . '[tmp2] [ov3] overlay=shortest=1:x=\'if(gte(t,7), (t-7)*50+'. $w*3/10 .',NAN)\':y=\'if(gte(t,9),(t-9)*50+'. $h*3/10 .',NAN)\' [tmp3]; '
+                . '[tmp3] [ov4] overlay=shortest=1:x=\'if(gte(t,9),'. $w*4/10 .'-(t-9)*60,NAN)\':y=\'if(gte(t,11),(t-11)*60+'. $h*4/10 .',NAN)\'" '
+                . $file3;
+        //echo $str;
+        $this->execDebug($str);
+    }
+    
+    public function test3() {
+        $source =  'static/ffmpeg/1.mp4';
+        $file = 'static/ffmpeg/1_logo.mp4';
+        $file2 = 'static/ffmpeg/1_logo2.mp4';
+        $info = $this->videoInfo($source);
+        $this->logo($source, $file, 15, 15, 330, 120);
+        $this->logo($file, $file2, $info[0]['width']-345, $info[0]['height']-135, 330, 120);
         
+        $file2 = 'static/ffmpeg/1_logo2.mp4';
+        $info = $this->videoInfo($file2);
+        $w = $info[0]['width'];
+        $h = $info[0]['height'];
         
+        $file3 =  'static/ffmpeg/1_overlay_3.mp4';
+        //视频覆盖+移动+淡入+曲线移动
+        $str = $this->ffmpeg . " -y -re -i $file2 -re -i $file2 -re -i $file2 -re -i $file2 -re -i $file2 " 
+                . '-filter_complex "'
+                . '[1:v] setpts=PTS-STARTPTS, scale=width='. $w*0.8 .':height='. $h*0.8 .', fade=in:d=3:n=100 [ov1]; '
+                . '[2:v] setpts=PTS-STARTPTS, scale='. $w*3/5 .'x'. $h*3/5 .' [ov2]; '
+                . '[3:v] setpts=PTS-STARTPTS, scale='. $w*2/5 .'x'. $h*2/5 .' [ov3]; '
+                . '[4:v] setpts=PTS-STARTPTS, scale='. $w*1/5 .'x'. $h*1/5 .' [ov4]; '
+                . '[0:v] [ov1] overlay=shortest=1:x=\'if(gte(t,3),'. $w/10 .',NAN)\':y=\'if(gte(t,5),(t-5)*40+'. $h/10 .','. $h/10 .')\' [tmp1]; '
+                . '[tmp1] [ov2] overlay=shortest=1:x=\'if(gte(t,5),'. $w/5 .',NAN)\':y=\'if(gte(t,7),'. $h/5 .'-(t-7)*50,'. $h/5 .')\' [tmp2]; '
+                . '[tmp2] [ov3] overlay=shortest=1:x=\'if(gte(t,7), (t-7)*60+'. $w*3/10 .',NAN)\':y=\'if(gte(t,9),(t-9)*60+'. $h*3/10 .','. $h*3/10 .')\' [tmp3]; '
+                . '[tmp3] [ov4] overlay=shortest=1:x=\'if(gte(t,9),'. $w*4/10 .'-sin(1.5*t)*'. $w/2 .',NAN)\':y=\'if(gte(t,11),(t-11)*80+'. $h*4/10 .','. $h*4/10 .')\'" '
+                . $file3;
+        //echo $str;
+        $this->execDebug($str);
     }
     
     public function overlay2($sou, $file) {
@@ -348,19 +466,19 @@ class Ffmpegs extends Controller
      * @param type $durl
      * @return boolean
      */
-    public function imgToVideo($url, $durl, $r = 25){
+    public function imgToVideo($url, $durl, $r = 25, $del = true){
         
         //$url = 'static/ffmpeg/img/1_image%d.jpg';
         //$durl = 'static/ffmpeg/1_1.mp4';
         
         $this->createDir($durl);
         
-        $str = "$this->ffmpeg -y -r $r -f image2 -i $url -vcodec libx264 $durl";
+        $str = "$this->ffmpeg -y -f image2 -i $url -r $r  -vcodec h264 $durl";
         
         $this->execDebug($str);
         
         $d = $this->getDir($url);
-        $this->removeDir($d);
+        if($del) $this->removeDir($d);
         return true; 
     }
     
