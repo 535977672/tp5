@@ -12,7 +12,7 @@
  * 继承think\console\command类
  * 实现 configure() execute()方法
  * 
- * 项目think目录 命令行 php think ES
+ * 项目think目录 命令行 php think ES searchCount
  */
 
 namespace app\console\command;
@@ -32,7 +32,7 @@ class ElasticsearchConsole extends Command {
     public function __construct()
     {
         parent::__construct();
-        $hosts = ['localhost:9200'];
+        $hosts = ['192.168.5.107:9200'];
         $this->client = ClientBuilder::create()->setHosts($hosts)->build();
     }
     
@@ -56,7 +56,7 @@ class ElasticsearchConsole extends Command {
             echo "执行方法错误 可选参方法 indexMore searchCount";
             return false;
         }
-        
+
         $this->$action();
     }
     
@@ -67,14 +67,25 @@ class ElasticsearchConsole extends Command {
     //update	局部更新文档。
     //delete	删除一个文档。
     public function indexMore() {
+        
+        for($i = 0; $i < 1; $i++){
+            //$pid = pcntl_fork();
+            //if (!$pid) {
+                $this->index(2);
+            //}
+        }
+    }
+    
+    public function index($n) {
         $params['body'] = [];
-        for ($i = 0; $i <= 100; $i++) {
-            $id = $this->getRandStr(2,3);
+        
+        for ($i = 0; $i <= $n; $i++) {
+            $id = $this->getRandStr(20,3);
             $params['body'][] = [
                 'index' => [
                     '_index' => $this->_index,
                     '_type' => $this->_type,
-                    '_id' => $id
+                    //'_id' => $id
                 ]
             ];
             $params['body'][] = [
@@ -83,8 +94,7 @@ class ElasticsearchConsole extends Command {
                 ];
         }
        
-        $response = $this->client->bulk($params);
-        dump($response);
+        $this->client->bulk($params);
     }
     
     /**
