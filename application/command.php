@@ -9,5 +9,6 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 return [
-    'app\console\command\TestConsole'
+    'app\console\command\TestConsole',
+    'app\console\command\ElasticsearchConsole'
     ];
