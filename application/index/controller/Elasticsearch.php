@@ -39,6 +39,7 @@ use Elasticsearch\ClientBuilder;
     数据库和Elasticsearch对应
     Relational DB -> Databases -> Tables -> Rows -> Columns
     Elasticsearch -> Indices   -> Types  -> Documents -> Fields索引、类型、文档、字段
+    数据文件比mysql要大很多
  */
 
 /**
@@ -541,10 +542,8 @@ class Elasticsearch extends Controller
             'index' => 'my_index',
             'type' => 'my_type',
             'from' => 0,
-            'size' => 10,
+            'size' => 10,//最大只有10000页，curl -XPUT 'http://localhost:9200/_all/_settings?preserve_existing=true' -d '{"index.max_result_window" : "1000000000"}'
             //'explain' => true,  //分析控制 
-            
-            
             
             //DSL查询
             'body' => [

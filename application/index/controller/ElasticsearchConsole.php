@@ -62,7 +62,7 @@ class ElasticsearchConsole extends Command {
             echo '执行方法错误';
             return false;
         }
-        if(!in_array($action, ['indexMore', 'count', 'delete', 'search'])){
+        if(!in_array($action, ['indexMore', 'count', 'delete'])){
             echo "执行方法错误 可选参方法 indexMore searchCount";
             return false;
         }
@@ -152,37 +152,6 @@ class ElasticsearchConsole extends Command {
         $response = $this->client->count($params);
         echo microtime(true)-$ts.PHP_EOL;
         dump($response);   
-    }
-    
-    public function search() {
-        $params = [
-            'index' => $this->_index,
-            'type' => $this->_type,
-            'from' => 0,
-            'size' => 1,
-            
-            //DSL查询
-            'body' => [
-                
-                'query' => [
-                    'bool' => [
-                        'must' => [
-                            ['term' => ['p3' => '24']], 
-                            ['match' => ['p4' => '24']],
-                            ['multi_match' => ['query' => '24','fields' => ['p3','p4']]],
-                            ['regexp' => ['p3' => '[0-9]+']], 
-                            ['prefix' => ['p3' => '2']],
-                        ],
-                    ],
-                    
-                ]
-            ],
-        ];
-        
-        $ts = microtime(true);
-        $response = $this->client->search($params);
-        echo microtime(true)-$ts.PHP_EOL;
-        dump($response);      
     }
     
     //删除一个索引
