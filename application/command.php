@@ -10,5 +10,4 @@
 // +----------------------------------------------------------------------
 return [
     'app\console\command\TestConsole',
-    'app\console\command\ElasticsearchConsole'
     ];

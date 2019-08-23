@@ -27,7 +27,8 @@
         "zendframework/zend-diactoros": "^1.8",
         "bshaffer/oauth2-server-php": "^1.11",
         "phpunit/phpunit": "^6.2",
-        "elasticsearch/elasticsearch": "^6.7"
+        "topthink/think-queue": "2.*",
+        "topthink/think-helper": "1.0.7"
     },
     "autoload": {
         "psr-4": {

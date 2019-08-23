@@ -84,6 +84,7 @@ class Hook
     {
         isset($this->tags[$tag]) || $this->tags[$tag] = [];
 
+        //is_callable() 函数验证变量的内容能否作为函数调用
         if (is_array($behavior) && !is_callable($behavior)) {
             if (!array_key_exists('_overlay', $behavior)) {
                 $this->tags[$tag] = array_merge($this->tags[$tag], $behavior);
@@ -187,6 +188,7 @@ class Hook
      */
     protected function execTag($class, $tag = '', $params = null)
     {
+        //init_test -> initTest
         $method = Loader::parseName($tag, 1, false);
 
         if ($class instanceof \Closure) {
@@ -212,6 +214,7 @@ class Hook
 
     public function __debugInfo()
     {
+        //get_object_vars — 返回由对象属性组成的关联数组
         $data = get_object_vars($this);
         unset($data['app']);
 
