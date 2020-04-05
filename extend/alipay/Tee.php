@@ -25,7 +25,7 @@ class Tee
     //SDK已经封装掉了公共参数，这里只需要传入业务参数
     //此次只是参数展示，未进行字符串转义，实际情况下请转义
         $request->setBizContent = "{" .
-            "    \"subject\":\"乐透\"," .
+            "\"subject\":\"乐透\"," .
             "    \"out_trade_no\":\"1000102\"," .
             "    \"total_amount\":\"0.01\"," .
             "    \"quit_url\":\"https://opendocs.alipay.com/apis/api_1/alipay.trade.wap.pay\"" . //用户付款中途退出返回商户网站的地址

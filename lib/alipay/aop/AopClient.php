@@ -555,7 +555,7 @@ class AopClient
 
         if ("json" == $this->format) {
 
-            $respObject = json_decode($r);
+            $respObject = json_decode($r);var_dump($respObject);
             if (null !== $respObject) {
                 $respWellFormed = true;
                 $signData = $this->parserJSONSignData($request, $resp, $respObject);
@@ -574,6 +574,7 @@ class AopClient
 
         //返回的HTTP文本不是标准JSON或者XML，记下错误日志
         if (false === $respWellFormed) {
+
             $this->logCommunicationError($sysParams["method"], $requestUrl, "HTTP_RESPONSE_NOT_WELL_FORMED", $resp);
             return false;
         }
